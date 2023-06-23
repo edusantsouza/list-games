@@ -117,38 +117,12 @@ img {
   }
 }
 
-/*============= Classes CSS Reutilizáveis ===================*/
-.section {
-  padding: 9.2rem 0 3.6rem;
-}
-
-.section__title {
-  font-size: var(--h1-font-size);
-  color: var(--text-color);
-}
-
-.section__subtitle {
-  display: block;
-  font-size: var(--small-font-size);
-  margin-bottom: 6.4rem;
-}
-
-.section__title,
-.section__subtitle {
-  text-align: center;
-}
-
 /*============= Layout ===================*/
 
 .container {
   max-width: 968px;
   margin-left: auto;
   margin-right: auto;
-}
-
-.grid {
-  display: grid;
-  gap: 2.4rem;
 }
 
 /*============= Buttons ===================*/
@@ -180,10 +154,6 @@ img {
 
 /*============= Para telas maiores ===================*/
 @media screen and (max-width: 992px) {
-  .container {
-    margin-inline: var(--mb-2-0);
-  }
-
   .button {
     padding: 1.6rem 2.8rem;
   }
@@ -194,30 +164,11 @@ img {
   }
 }
 
-/*============= Para tela média ===================*/
-@media screen and (max-width: 768px) {
-  body {
-    margin: 0 0 var(--header-height) 0;
-  }
-
-  .section {
-    padding: 3.2rem 0 6.4rem;
-  }
-
-  .section__subtitle {
-    margin-bottom: var(--mb-3-2);
-  }
-}
-
-@media screen and (max-width: 576px) {}
-
 /*============= Para telas menores ===================*/
 @media screen and (max-width: 350px) {
   :root {
     --big-font-size: 3.6rem;
   }
 
-  .container {
-    margin-inline: var(--mb-1-6);
-  }
+
 }
