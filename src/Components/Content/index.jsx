@@ -58,7 +58,7 @@ const Content = () => {
   }
 
   useEffect(() => {
-    fetchWithTimeout('https:games-test-api-81e9fb0d564a.herokuapp.com/api/data/', options)
+    fetchWithTimeout('https://games-test-api-81e9fb0d564a.herokuapp.com/api/data', options)
   }, [])
 
   const genre = list && list.map((item) => {
