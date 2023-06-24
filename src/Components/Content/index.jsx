@@ -135,6 +135,8 @@ const Content = () => {
     )
   }
 
+  console.log(list)
+
 
 }
 
