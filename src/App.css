@@ -57,12 +57,11 @@ img {
 :root {
 
   /*============= Colors ===============*/
-  --primary-black: #252525;
-  --secundary-black: #5a5a5a;
+  --primary-black: #121212;
+  --secundary-black: rgba(255, 255, 255, 0.08);
   --highlight-color: #6F4ECF;
   --text-white: #f6f6f7;
-  --text-muted: #cccccc;
-  --text-hover: #232945;
+  --text-muted: #a7a7a7;
 
   /*============= Fontes ===================*/
   --body-font: "Inter", sans-serif;

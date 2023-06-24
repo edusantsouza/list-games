@@ -13,6 +13,7 @@ const Content = () => {
   const [list, setList] = useState(null);
   const [search, setSearch] = useContext(Context);
 
+
   const options = {
     method: 'GET',
     headers: {
@@ -104,7 +105,7 @@ const Content = () => {
       <main className='main__container container'>
         <section className='games-container'>
           <div className="select-categorie">
-            <label htmlFor="categories">Filtre por categoria: </label>
+            <label htmlFor="categories">Escolha uma categoria: </label>
             <select onChange={chooseCategorie} name="categories" id="categories">
               <option value="all">Todos</option>
               {uniqueGenres.map((item) => {
@@ -114,6 +115,13 @@ const Content = () => {
               })}
             </select>
           </div>
+          <h2 className='name-categorie'>
+            {
+              search.length === 0
+                ? categorie === 'all' ? 'Todos os jogos' : `Resultados para ${categorie}`
+                : `Resultados para "${search}"`
+            }
+          </h2>
           <ListItems
             list={list}
             categorie={categorie} />

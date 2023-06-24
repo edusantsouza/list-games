@@ -3,6 +3,11 @@
   padding-inline: 20px;
 }
 
+.games-container {
+  display: flex;
+  flex-direction: column;
+}
+
 .games-list {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -16,19 +21,20 @@
   border-radius: 5px;
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
   gap: 1rem;
+  justify-content: space-between;
 }
 
 .game-title {
-  padding-block: 1rem;
   font-weight: var(--font-medium);
   font-size: var(--h3-font-size);
-
 }
 
 .info-wrapper {
   display: flex;
   justify-content: space-between;
+  width: 100%;
 }
 
 .info-wrapper span {
@@ -41,14 +47,50 @@
   display: flex;
   flex-direction: column;
   font-size: var(--smaller-font-size);
+  margin-bottom: 2rem;
+}
+
+.game-publisher span:first-child,
+.game-genre span:first-child {
+  font-weight: var(--font-medium);
+  color: var(--text-muted);
+  font-size: var(--smaller-font-size);
 }
 
 .game-description {
-  text-align: justify;
+  max-width: 400px;
+  height: 80px;
+}
+
+.game-description p {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+}
+
+
+.game-profile {
+  margin-top: 1rem;
+  color: var(--text-white);
+  font-weight: var(--font-medium);
+  background: linear-gradient(to left, rgba(255, 255, 255, 0.12) 50%, var(--highlight-color) 50%) right;
+  background-size: 200% 100%;
+  padding: 1.2rem 2.4rem;
+  transition: background .8s ease;
+  border-radius: 3px;
+}
+
+.game-profile:hover {
+  background-position: left;
 }
 
 .select-categorie {
   margin-bottom: 4rem;
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  align-self: flex-end;
 }
 
 .select-categorie label {
@@ -58,14 +100,25 @@
 
 .select-categorie select {
   padding: .5rem;
-  background-color: var(--secundary-black);
   border: none;
   color: var(--text-white);
+  background-color: var(--primary-black);
+  border: 1px solid var(--secundary-black);
 }
 
 .select-categorie select option {
   font-size: var(--smaller-font-size);
   padding: 1rem;
+}
+
+.select-categorie select:focus option:hover {
+  background-color: red;
+}
+
+.name-categorie {
+  font-size: var(--h3-font-size);
+  font-weight: var(--font-medium);
+  margin-bottom: 4rem;
 }
 
 .error__container {
