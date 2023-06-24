@@ -44,12 +44,10 @@ const Content = () => {
         setList(data)
       })
       .catch(err => {
-        console.error('Ocorreu um erro na busca: ', err)
         setError(err)
       })
       .finally(() => {
         setLoading(true)
-        console.log('loading true')
       })
 
 
@@ -79,30 +77,24 @@ const Content = () => {
   if (!loading) {
     return (
       <section className="container error__container">
-        {console.log('loading')}
         <h2 className='loading-msg'>Carregando, aguarde um momento.</h2>
       </section>
     )
   } else if (time) {
     return (
       <section className="container error__container">
-        {console.log('exceede time')}
-
         <h2 className='error-msg'>O servidor demorou para responder, tente novamente mais tarde.</h2>
       </section>
     )
   } else if (statusCodeValidation(error?.status)) {
     return (
       <section className="container error__container">
-        {console.log('error')}
-
         <h2 className='error-msg'>O servidor falhou em responder, tente recarregar a página.</h2>
       </section>
     )
   } else if (error?.ok) {
     return (
       <section className="container error__container">
-        {console.log('unk err')}
 
         <h2 className='error-msg'>O servidor não conseguirá responder por agora, tente voltar novamente mais tarde.</h2>
       </section>
@@ -110,8 +102,6 @@ const Content = () => {
   } else if (list) {
     return (
       <main className='main__container container'>
-        {console.log('list')}
-
         <section className='games-container'>
           <div className="select-categorie">
             <label htmlFor="categories">Filtre por categoria: </label>
@@ -134,10 +124,6 @@ const Content = () => {
       </main >
     )
   }
-
-  console.log(list)
-
-
 }
 
 export default Content

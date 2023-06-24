@@ -9,7 +9,7 @@ const Header = () => {
   const [search, setSearch] = useContext(Context)
 
   const onClear = () => {
-    if (search.length > 0) {
+    if (ref.current.value.length > 0) {
       ref.current.value = "";
       setSearch('')
     }
