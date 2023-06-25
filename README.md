@@ -49,13 +49,13 @@ O objetivo do projeto é implementar o frontend de uma lista de jogos fornecido 
 ### Screenshots
 
 A página inicial da aplicação.
-![Página inicial da aplicação.]('./screenshots/screenshot-one')
+![Página inicial da aplicação.](/screenshots/screenshot-one.JPG)
 
 Filtrando os jogos por categoria.
-![Filtrando os jogos por categoria.]('./screenshots/screenshot-two')
+![Filtrando os jogos por categoria.](/screenshots/screenshot-two.JPG)
 
 Pesquisando jogos com uma parte do nome na barra de pesquisa.
-![Pesquisando jogos com uma parte do nome na barra de pesquisa.]('./screenshots/screenshot-two')
+![Pesquisando jogos com uma parte do nome na barra de pesquisa.](/screenshots/screenshot-three.JPG)
 
 
 
