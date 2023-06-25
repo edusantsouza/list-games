@@ -91,4 +91,8 @@ header form label {
   header {
     justify-content: center;
   }
+
+  .input-wrapper input::placeholder {
+    font-size: var(--smaller-font-size);
+  }
 }

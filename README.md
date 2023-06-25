@@ -68,11 +68,5 @@ Pesquisando jogos com uma parte do nome na barra de pesquisa.
 
 
 
-## Como executar este projeto?
-
-Entre no diretório do projeto e execute:
-
-### `npm start`
-
-Ou visite a página da aplicação [clicando aqui.](https://list-games.vercel.app/)
+Visite a página da aplicação [clicando aqui.](https://list-games.vercel.app/)
 

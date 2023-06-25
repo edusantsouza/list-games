@@ -1,6 +1,8 @@
-import React, { useState } from 'react'
+import React from 'react'
+
 
 const Items = ({ list, categorie, finalSearchValue, uniqueTitles, search }) => {
+
 
   const titlesValidity = () => {
     return uniqueTitles.some(item => {
@@ -8,7 +10,7 @@ const Items = ({ list, categorie, finalSearchValue, uniqueTitles, search }) => {
     })
   }
 
-  if (search.length < 1 && categorie !== 'all') {
+  if (search.length === 0 && categorie !== 'all') {
     return (
       list.map((item) => {
         if (categorie === item.genre) {
@@ -34,7 +36,6 @@ const Items = ({ list, categorie, finalSearchValue, uniqueTitles, search }) => {
       })
     )
   } else if (search.length === 0) {
-
     return (
       list.map((item) => {
         return (
@@ -90,7 +91,6 @@ const Items = ({ list, categorie, finalSearchValue, uniqueTitles, search }) => {
       </p>
     )
   }
-
 }
 
 export default Items
