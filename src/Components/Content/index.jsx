@@ -1,8 +1,9 @@
 import React, { useEffect, useState, useContext } from 'react'
-import './index.css'
-import BackwardBtn from './BackwardBtn';
-import ListItems from './ListItems';
 import Context from '../../Contexts/GeneralContext';
+import SelectCategorie from './SelectCategorie'
+import ListItems from './ListItems';
+import BackwardBtn from './BackwardBtn';
+import './index.css'
 
 const Content = () => {
 
@@ -91,30 +92,26 @@ const Content = () => {
     return (
       <section className="container error__container">
         <h2 className='error-msg'>O servidor falhou em responder, tente recarregar a página.</h2>
+        <h3 className='error-status'>{error.status}</h3>
+        <p className='error-text'>{error.statusText}</p>
       </section>
     )
   } else if (error?.ok) {
     return (
       <section className="container error__container">
-
         <h2 className='error-msg'>O servidor não conseguirá responder por agora, tente voltar novamente mais tarde.</h2>
+        <h3 className='error-status'>{error.status}</h3>
+        <p className='error-text'>{error.statusText}</p>
+        {console.log(error)}
       </section>
     )
   } else if (list) {
     return (
       <main className='main__container container'>
         <section className='games-container'>
-          <div className="select-categorie">
-            <label htmlFor="categories">Escolha uma categoria: </label>
-            <select onChange={chooseCategorie} name="categories" id="categories">
-              <option value="all">Todos</option>
-              {uniqueGenres.map((item) => {
-                return (
-                  <option key={item} value={item}>{item}</option>
-                )
-              })}
-            </select>
-          </div>
+          <SelectCategorie
+            chooseCategorie={chooseCategorie}
+            uniqueGenres={uniqueGenres} />
           <h2 className='name-categorie'>
             {
               search.length === 0
@@ -122,9 +119,12 @@ const Content = () => {
                 : `Resultados para "${search}"`
             }
           </h2>
-          <ListItems
-            list={list}
-            categorie={categorie} />
+          <ul className='games-list'>
+            <ListItems
+              list={list}
+              categorie={categorie}
+            />
+          </ul>
         </section>
         <BackwardBtn
           setCategorie={setCategorie}

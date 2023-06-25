@@ -58,6 +58,7 @@
 }
 
 .game-description {
+  font-size: var(--small-font-size);
   max-width: 400px;
   height: 80px;
 }
@@ -68,7 +69,6 @@
   -webkit-line-clamp: 4;
   -webkit-box-orient: vertical;
 }
-
 
 .game-profile {
   margin-top: 1rem;
@@ -86,7 +86,7 @@
 }
 
 .select-categorie {
-  margin-bottom: 4rem;
+  margin-bottom: 10rem;
   display: flex;
   gap: 1rem;
   align-items: center;
@@ -124,6 +124,9 @@
 .error__container {
   display: flex;
   justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
   padding-block: 20rem;
 }
 
@@ -132,6 +135,15 @@
   font-size: var(--h3-font-size);
   font-weight: var(--font-medium);
   text-align: center;
+  margin-bottom: 5rem;
+}
+
+.error-status {
+  font-size: var(--big-font-size);
+}
+
+.error-text {
+  font-size: var(--normal-font-size);
 }
 
 .loading-msg {
@@ -198,16 +210,28 @@
 
   .select-categorie select {
     padding: .5rem;
-    background-color: var(--secundary-black);
-    border: none;
+    background-color: var(--primary-black);
     color: var(--text-white);
     font-size: var(--smaller-font-size);
-
   }
 
   .select-categorie select option {
     font-size: var(--smaller-font-size);
     padding: 1rem;
+  }
+
+  .game-title {
+
+    font-size: var(--normal-font-size);
+  }
+
+  .game-description {
+    font-size: var(--smaller-font-size);
+  }
+
+
+  .game-profile {
+    font-size: var(--smaller-font-size);
   }
 
   .backward-btn {

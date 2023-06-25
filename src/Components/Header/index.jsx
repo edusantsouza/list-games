@@ -16,7 +16,11 @@ const Header = () => {
     }
   };
   return (
-    <header className='container'>
+    <header className='header__container container'>
+      <p className='header__logo'>
+        App Masters
+        <span>API de Jogos</span>
+      </p>
       <form action="" onSubmit={(e) => {
         e.preventDefault()
         setSearch(change)
@@ -25,7 +29,7 @@ const Header = () => {
         <div className='input-wrapper'>
           <input ref={ref} type="text" onKeyUp={(e) => {
             setChange(e.target.value)
-          }} name='searchGame' placeholder='Ex.: Resident Evil 4' />
+          }} name='searchGame' placeholder='Procure por um jogo' />
           <div className='search-btn'>
             <i onClick={onClear} className='bx bx-x close-search'></i>
             <button type="submit" className='go-search'>
