@@ -46,15 +46,24 @@ O objetivo do projeto é implementar o frontend de uma lista de jogos fornecido 
 - Uma vez que tenha os dados em mãos, veja quais `genre` foram retornados e permita ao usuário selecionar um deles, e então filtre para exibir apenas jogos do gênero selecionado [x]
   * Um filtro foi adicionado na home para selecionar jogos conforme o gênero que preferir através de uma droplist que contém todos os gêneros disponíveis.
 
+
+
 ### Screenshots
 
 A página inicial da aplicação.
+
 ![Página inicial da aplicação.](/screenshots/screenshot-one.JPG)
 
+
+
 Filtrando os jogos por categoria.
+
 ![Filtrando os jogos por categoria.](/screenshots/screenshot-two.JPG)
 
-Pesquisando jogos com uma parte do nome na barra de pesquisa.
+
+
+Pesquisando jogos com uma parte do nome na barra de pesquisa. 
+
 ![Pesquisando jogos com uma parte do nome na barra de pesquisa.](/screenshots/screenshot-three.JPG)
 
 
