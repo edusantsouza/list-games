@@ -7,18 +7,50 @@ import RatingStars from '../Buttons/RatingStars'
 import { AuthContext } from '../../Contexts/AuthContext';
 import './styles.css'
 
-const FavoritesListContent = () => {
-  const { finalList, listFavorite } = useContext(MyContext)
-  const { currentUser, getUser } = useContext(AuthContext)
 
-  const userValues = getUser && [...getUser.listFavorite]
-  const array = finalList.filter(item => {
-    return userValues.some(obj => item.id === obj.id);
-  });
+const FavoritesListContent = () => {
+  const { finalList, isFav, arrayData } = useContext(MyContext)
+
+  function getObjects(list, list2) {
+    const arr = [];
+
+    for (const obj1 of list) {
+      for (const obj2 of list2) {
+        if (compareObjects(obj1, obj2)) {
+          arr.push(obj1);
+          break;
+        }
+      }
+    }
+
+    return arr;
+  }
+
+  function compareObjects(obj1, obj2) {
+
+    return obj1.id === obj2.id;
+  }
+
+
+  function filtrarObjetosEmComum(lista1, lista2) {
+    return lista1.map(objeto1 => {
+      const objetoExistente = lista2.find(objeto2 => compararObjetos(objeto1, objeto2));
+      return { ...objeto1, isActive: !!objetoExistente };
+    });
+  }
+
+  function compararObjetos(objeto1, objeto2) {
+
+    return objeto1.id === objeto2.id;
+  }
+
+
+  const listaFiltrada = filtrarObjetosEmComum(finalList, arrayData[1]);
+  console.log(listaFiltrada.filter(item => item.isActive === true));
 
   const showContent = () => {
-
-    return finalList && array.map((item) => {
+    let arr = listaFiltrada.filter(item => item.isActive === true)
+    return finalList && arr.map((item) => {
       return (
         <li className="game-item">
           <img src={item.thumbnail} alt={item.title} className='game-item-img' />
@@ -26,20 +58,21 @@ const FavoritesListContent = () => {
             <div className="game-item-section">
               <span className='game-item-categorie'>{item.genre}</span>
               <div className="game-item-btns">
-                <Favorite id={item.id} title={item.title} />
-                <WishList id={item.id} title={item.title} />
-                <CurrentPlay id={item.id} title={item.title} />
+                <Favorite id={item.id} isActive={item.isActive} title={item.title} />
+                <WishList id={item.id} isActive={item.isActive} title={item.title} />
+                <CurrentPlay id={item.id} isActive={item.isActive} title={item.title} />
               </div>
             </div>
             <div className="game-item-section">
               <p className="game-item-title">{item.title}</p>
-              <RatingStars id={item.id} title={item.title} />
+              <RatingStars id={item.id} isActive={item.isActive} title={item.title} />
             </div>
           </div>
         </li>
       )
     })
   }
+
 
 
   return (
@@ -51,7 +84,7 @@ const FavoritesListContent = () => {
 
       </div>
       <ul className="show-games__list">
-        {array.length !== 0 ? showContent() : <p class="empty-msg">Você ainda não adicionou nada aos seus favoritos.</p>}
+        {isFav && arrayData[1].length !== 0 ? showContent() : <p class="empty-msg">Você ainda não adicionou nada aos seus favoritos.</p>}
       </ul>
     </section>
   )

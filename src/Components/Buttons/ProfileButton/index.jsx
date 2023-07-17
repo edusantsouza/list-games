@@ -14,9 +14,9 @@ const ProfileButton = () => {
   const handleLogout = async () => {
     try {
       await logout()
-      setUserIsLogged(false)
+      // setUserIsLogged(false)
       navigate('/')
-      window.location.reload()
+      // window.location.reload()
     } catch {
     }
   }

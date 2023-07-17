@@ -16,6 +16,10 @@ const GetGameList = (props) => {
   const [rate, setRate] = useState([])
   const [isOpen, setIsOpen] = useState(false)
   const [errorMessage, setErrorMessage] = useState('')
+  const [arrayData, setArrayData] = useState([]);
+  const [isFav, setIsFav] = useState(1)
+
+
 
   const options = {
     method: 'GET',
@@ -74,6 +78,10 @@ const GetGameList = (props) => {
 
 
   const onValues = {
+    isFav,
+    setIsFav,
+    arrayData,
+    setArrayData,
     errorMessage,
     setErrorMessage,
     isOpen,

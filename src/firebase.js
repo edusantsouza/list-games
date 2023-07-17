@@ -14,6 +14,7 @@ const firebaseConfig = {
 
 const app = firebase.initializeApp(firebaseConfig)
 
+firebase.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL);
 export const db = getFirestore(app)
 
 export const auth = app.auth()

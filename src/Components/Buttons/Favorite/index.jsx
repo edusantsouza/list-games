@@ -1,26 +1,27 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { MyContext } from '../../../Contexts/GetGameList';
 import { AuthContext } from '../../../Contexts/AuthContext';
 import './styles.css'
 import { doc, updateDoc, arrayUnion, arrayRemove } from "firebase/firestore";
 import { db } from '../../../firebase'
+import 'firebase/firestore';
 
-
-const FavoriteButton = ({ id, title }) => {
-  const [isFavorite, setIsFavorite] = useState(false);
+const FavoriteButton = ({ id, title, isActive }) => {
   const { getUser, userCollectionRef } = useContext(AuthContext)
-  const { listFavorite, setListFavorite, setErrorMessage } = useContext(MyContext)
+  const { finalList, setIsFav, isFav } = useContext(MyContext)
+  const [arrayData, setArrayData] = useState([]);
+  const [isFavorite, setIsFavorite] = useState(false);
 
 
   const lorem = getUser && [...getUser.listFav]
   const userId = getUser && getUser.id
 
-  const addElement = async (newItem) => {
+  const addElement = async () => {
     const docRef = doc(db, "userStorage", userId);
 
     try {
       await updateDoc(docRef, {
-        lisFav: arrayUnion({ title, id })
+        listFav: arrayUnion({ title, id })
       });
       console.log("Novo elemento adicionado ao array com sucesso!");
     } catch (error) {
@@ -28,38 +29,38 @@ const FavoriteButton = ({ id, title }) => {
     }
   };
 
-  const removeElement = async (newItem) => {
+  const removeElement = async () => {
     const docRef = doc(db, "userStorage", userId);
 
     try {
       await updateDoc(docRef, {
-        listFav: arrayRemove({ title, id })
+        listFav: arrayRemove({ id, title })
       });
-      console.log("Novo elemento adicionado ao array com sucesso!");
+      console.log("Elemento removido com sucesso!");
     } catch (error) {
       console.error("Erro ao adicionar novo elemento ao array:", error);
     }
   };
-
 
   const handleToggleFavorite = () => {
+    setIsFav(isFav + 1)
+
+    if (!isActive) {
+      isActive = true
+      addElement()
+    } else {
+      removeElement()
+    }
 
     setIsFavorite(!isFavorite)
-
-    isFavorite
-      ? addElement()
-      : removeElement()
-
-    console.log(getUser)
   };
 
   return (
     <div className='game-fav-button '
-
       onClick={handleToggleFavorite}>
       <span aria-label="Favorito"
         className={`game-fav ${getUser ? 'pointer' : 'default'} `}
-        style={{ color: isFavorite ? 'red' : 'grey' }}>
+        style={{ color: isActive ? 'red' : 'grey' }}>
         <i className='bx bxs-heart'></i>
       </span>
     </div>
