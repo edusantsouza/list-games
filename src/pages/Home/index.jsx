@@ -12,7 +12,7 @@ const Home = () => {
     <>
       <NavHeader />
       <Sidebar />
-      {finalList
+      {true
         ? <Main />
         : <Spinner />}
     </>

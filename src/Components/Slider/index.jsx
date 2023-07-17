@@ -7,10 +7,10 @@ import { MyContext } from '../../Contexts/GetGameList'
 import './styles.css'
 
 const Slider = () => {
-  const { finalList } = React.useContext(MyContext)
+  const { list } = React.useContext(MyContext)
 
   const showAll = () => {
-    return finalList && finalList.map((item, index) => {
+    return list && list.map((item, index) => {
       const { title, id, publisher, short_description, thumbnail, genre, platform, game_url } = item;
       if (index >= 0 && index <= 4) {
         return { title, id, publisher, short_description, thumbnail, genre, platform, game_url };
