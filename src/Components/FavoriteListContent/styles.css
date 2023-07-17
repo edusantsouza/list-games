@@ -1,0 +1,12 @@
+.game-item-categorie {
+  font-size: var(--tiny-font-size);
+  background-color: var(--dark-cyan);
+  padding: .5rem .8rem;
+  border-radius: 3px;
+}
+
+.empty-msg {
+  color: var(--grey-color);
+  grid-column: 1/4;
+  margin-top: 3rem;
+}

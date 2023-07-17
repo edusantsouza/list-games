@@ -1,0 +1,17 @@
+.grey {
+  color: var(--grey-color);
+
+}
+
+.gold {
+  color: gold;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+.game-rating i {
+  font-size: 1.6rem;
+  margin-right: .1rem;
+}

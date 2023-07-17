@@ -19,7 +19,7 @@ textarea {
 }
 
 body {
-  background-color: var(--primary-black);
+  background-color: var(--background-color);
   color: var(--text-white);
 }
 
@@ -50,21 +50,31 @@ img {
 
 
 /*===================  Google Fonts ====================*/
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+/* @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap'); */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap');
 
 /*===================  Variáveis CSS ====================*/
 
 :root {
 
   /*============= Colors ===============*/
-  --primary-black: #121212;
-  --secundary-black: rgba(255, 255, 255, 0.08);
-  --highlight-color: #6F4ECF;
-  --text-white: #f6f6f7;
-  --text-muted: #a7a7a7;
+  --background-color: #0D171FFF;
+  --background-color-opacity: rgba(13, 23, 31, 0.562);
+  --dark-cyan: #3894F0FF;
+  --gold: #F5EC00FF;
+  --green-icon: #138500FF;
+  --grey-color: #A2AFBBFF;
+  --grey-color-opacity: #A2AFBB7F;
+  --msg-error-container: #7E0F0F75;
+  --navy-blue-500: #1C2C3BFF;
+  --navy-blue-500-opacity: #1C2C3B82;
+  --navy-blue-700: #15202CFF;
+  --navy-blue-700-opacity: #15202C7F;
+  --red-fav: #8D0909FF;
+  --text-white: #F8F8F8FF;
 
   /*============= Fontes ===================*/
-  --body-font: "Inter", sans-serif;
+  --body-font: "Poppins", sans-serif;
 
   /*============= Tamanho da Fonte ===================*/
   --header-height: 4.8rem;
@@ -104,7 +114,7 @@ img {
 
 /*============= Tipografia Responsiva ===================*/
 
-@media screen and (max-width: 992px) {
+/* @media screen and (max-width: 992px) {
   :root {
     --big-font-size: 4.4rem;
     --h1-font-size: 2.4rem;
@@ -114,40 +124,35 @@ img {
     --small-font-size: 1.3rem;
     --smaller-font-size: 1.2rem;
   }
-}
+} */
 
 /*============= Layout ===================*/
 
 .container {
-  max-width: 968px;
+  max-width: 1280px;
   margin-left: auto;
   margin-right: auto;
+  padding-inline: 20px;
+  display: grid;
+  grid-template-columns: 280px minmax(250px, 980px);
+  grid-template-rows: 100px auto;
+  grid-template-areas:
+    "sidebar nav"
+    "sidebar content";
+  height: 100vh;
+  column-gap: 4rem;
 }
 
-/*============= Buttons ===================*/
+@media(max-width: 996px) {
+  .container {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "nav"
+      "content";
+    padding-inline: 10px;
 
-.button {
-  display: inline-block;
-  background-color: var(--text-color);
-  color: var(--text-white);
-  padding: 2rem 3.2rem;
-  border-radius: 1.6rem;
-  font-weight: var(--font-medium);
+  }
 }
-
-.button:hover {
-  background-color: var(--text-hover);
-}
-
-.button__icon {
-  margin-left: var(--mb-0-4);
-}
-
-.button--flex {
-  display: inline-flex;
-  align-items: center;
-}
-
 
 /*============= Breakpoints ===================*/
 

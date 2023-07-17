@@ -1,0 +1,28 @@
+.login-screen {
+  position: fixed;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  background: var(--navy-blue-700);
+  z-index: 9999;
+  padding-inline: 20px;
+}
+
+.back-home {
+  border: none;
+  cursor: pointer;
+  padding: 1.2rem 3.6rem;
+  border-radius: 5px;
+  background: var(--navy-blue-500);
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-size: var(--normal-font-size);
+  color: var(--text-white);
+  font-weight: var(--font-medium);
+  transition: opacity .5s;
+}
+
+.back-home:hover {
+  opacity: .8;
+}

@@ -1,0 +1,6 @@
+.game-item-categorie {
+  font-size: var(--tiny-font-size);
+  background-color: var(--dark-cyan);
+  padding: .5rem .8rem;
+  border-radius: 3px;
+}

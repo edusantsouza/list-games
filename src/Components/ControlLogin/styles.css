@@ -1,0 +1,139 @@
+.signin-form__container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  border: 1px dotted var(--navy-blue-500);
+  padding: 4rem 2rem;
+  border-radius: 5px;
+  max-width: 400px;
+  height: 650px;
+  width: 100%;
+}
+
+.signin-form-title {
+  font-size: var(--h2-font-size);
+  font-weight: var(--font-medium);
+}
+
+.signin-form-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  max-width: 330px;
+  width: 100%
+}
+
+.form-error-msg {
+  font-size: var(--tiny-font-size);
+  padding: .8rem 1rem;
+  background-color: var(--msg-error-container);
+  border-radius: 3px;
+
+}
+
+.signin-form {
+  display: flex;
+  width: 100%;
+  gap: 3rem;
+  flex-direction: column;
+}
+
+.form-field-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
+}
+
+.form-field label {
+  font-size: var(--tiny-font-size);
+  color: var(--text-white);
+}
+
+.form-field input {
+  padding: 1rem 1.4rem;
+  border: none;
+  border-radius: 3px;
+  background-color: var(--navy-blue-500);
+  color: var(--text-white);
+  font-size: var(--smaller-font-size)
+}
+
+.sub-greenting {
+  color: var(--dark-cyan);
+  font-weight: var(--font-medium);
+}
+
+.form-field input::placeholder {
+  color: var(--grey-color);
+  font-size: var(--smaller-font-size)
+}
+
+.options-form {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: -10px;
+}
+
+.opt-forget {
+  font-size: var(--tiny-font-size);
+  color: var(--dark-cyan);
+  cursor: pointer;
+}
+
+.form-button {
+  padding: 1rem;
+  border: none;
+  border-radius: 3px;
+  color: var(--text-white);
+  background: var(--dark-cyan);
+  font-weight: var(--font-medium);
+  cursor: pointer;
+}
+
+.signup-cta {
+  font-size: var(--smaller-font-size);
+  color: var(--text-white);
+  text-align: center;
+}
+
+.signup-cta .span {
+  color: var(--dark-cyan);
+  cursor: pointer;
+}
+
+.signup-cta.signup {
+  margin-top: 5rem;
+}
+
+.input-alert {
+  border: 2px solid var(--msg-error-container) !important;
+}
+
+@media(max-width: 768px) {
+  .signin-form-title {
+    font-size: 1.8rem
+  }
+
+  .form-field input {
+    padding: 1rem 1.4rem;
+    border: none;
+    border-radius: 3px;
+    background-color: var(--navy-blue-500);
+    color: var(--text-white);
+    font-size: var(--tiny-font-size)
+  }
+
+  .form-field input::placeholder {
+    color: var(--grey-color);
+    font-size: var(--tiny-font-size)
+  }
+
+}

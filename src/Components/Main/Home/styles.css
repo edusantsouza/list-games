@@ -1,0 +1,58 @@
+.home__container {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  justify-content: center;
+  padding-block: 2rem;
+  gap: 20rem;
+}
+
+.highlight-section {
+  display: flex;
+  flex-direction: column;
+  max-width: 95vw;
+  padding: 1rem;
+}
+
+.show-games__list.home-show {
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: scroll;
+  scroll-behavior: smooth;
+  justify-content: flex-start;
+}
+
+.show-games__list.home-show::-webkit-scrollbar {
+  display: none;
+}
+
+.show-games__list.home-show .game-item-img {
+  cursor: grab;
+}
+
+.show-games-pages.home-show .current-page {
+  cursor: pointer;
+}
+
+@media(max-width: 996px) {
+  .home__container {
+    gap: 12rem;
+  }
+}
+
+@media(max-width: 565px) {
+  .home__container {
+    gap: 20rem;
+  }
+
+  .show-games__list.home-show {
+    padding-left: 0;
+  }
+
+  .highlight-section {
+    display: flex;
+    flex-direction: column;
+    max-width: 90vw;
+    padding: 0
+  }
+}

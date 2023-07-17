@@ -1,0 +1,55 @@
+.current__container {
+  display: flex;
+  flex-direction: column;
+  gap: 2.8rem;
+}
+
+.current__title {
+  font-size: var(--normal-font-size);
+  margin-top: 2rem;
+}
+
+.current__games-list {
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
+}
+
+.current__game-image {
+  max-width: 100px;
+  border-radius: 5px;
+}
+
+.current__game-item {
+  display: flex;
+  gap: 2rem;
+}
+
+.current__game-info {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.current__game-title {
+  font-size: var(--smaller-font-size);
+  max-width: 200px;
+}
+
+.current__show-link {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  cursor: pointer;
+}
+
+.current__show-link i {
+  font-size: 2rem;
+}
+
+.current_empty {
+  text-align: center;
+  font-size: var(--normal-font-size);
+  color: var(--grey-color)
+}
