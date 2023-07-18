@@ -43,7 +43,6 @@ export const AuthProvider = ({ children }) => {
     const result = data.docs.map((item) => ({ ...item.data(), id: item.id }))
     const userInfo = result.filter(item => item.email === refEmail)
     const resolve = userInfo[0]
-    console.log('aqui ', resolve)
     localStorage.setItem('user', JSON.stringify(resolve));
   }
 
