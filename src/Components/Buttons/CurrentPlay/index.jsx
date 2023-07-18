@@ -10,7 +10,8 @@ const CurrentPlay = ({ title, id, publisher, short_description, thumbnail, genre
   const [active, setActive] = useState(false)
 
   useEffect(() => {
-    setActive(favData.listCurrent.some((item) => item.id === id))
+    currentUser &&
+      setActive(favData.listCurrent.some((item) => item.id === id))
   })
 
 
@@ -70,7 +71,11 @@ const CurrentPlay = ({ title, id, publisher, short_description, thumbnail, genre
   return (
     <div
       className='game-fav-button'
-      onClick={handleTogglePlaying}>
+      onClick={() => {
+        if (currentUser) {
+          handleTogglePlaying()
+        }
+      }}>
       <span aria-label="currentPlaying"
         className={`game-fav ${currentUser ? 'pointer' : 'default'} `}
         style={{ color: active ? 'green' : 'grey' }}>

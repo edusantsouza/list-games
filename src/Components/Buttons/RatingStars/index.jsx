@@ -13,7 +13,7 @@ const RatingStars = ({ title, id }) => {
 
 
   useEffect(() => {
-    if (favData.rate.length > 0 && favData.rate.some((item) => item.id === id)) {
+    if (currentUser && favData.rate.length > 0 && favData.rate.some((item) => item.id === id)) {
       const item = favData.rate.filter(item => item.id === id)
       const getStar = item[item.length - 1]
       setValue(getStar.element)
@@ -43,9 +43,12 @@ const RatingStars = ({ title, id }) => {
         name="rate"
         size="large"
         value={value}
+        max={4}
         onChange={(event) => {
-          addElement(event.target.value)
-          setValue(Number(event.target.value));
+          if (currentUser) {
+            addElement(event.target.value)
+            setValue(Number(event.target.value));
+          }
         }}
       />
     </div>

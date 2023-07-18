@@ -10,8 +10,8 @@ const Wishlist = ({ title, id, publisher, short_description, thumbnail, genre, p
   const [active, setActive] = useState(false)
 
   useEffect(() => {
-    setActive(favData.listWishlist.some((item) => item.id === id))
-
+    currentUser &&
+      setActive(favData.listWishlist.some((item) => item.id === id))
   })
 
 
@@ -73,11 +73,15 @@ const Wishlist = ({ title, id, publisher, short_description, thumbnail, genre, p
   return (
     <div
       className='game-fav-button'
-      onClick={handleToggleWishList}>
+      onClick={() => {
+        if (currentUser) {
+          handleToggleWishList()
+        }
+      }}>
       <span aria-label="currentPlaying" className={`game-fav ${currentUser ? 'pointer' : 'default'} `} style={{ color: active ? 'cyan' : 'grey' }}>
         <i className='bx bxs-bookmark-plus'></i>
       </span>
-    </div>
+    </div >
   );
 }
 

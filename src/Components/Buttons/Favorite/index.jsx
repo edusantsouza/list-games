@@ -11,21 +11,22 @@ const FavoriteButton = ({ title, id, publisher, short_description, thumbnail, ge
 
 
   useEffect(() => {
-    const getSnapshot = async () => {
-      const local = JSON.parse(localStorage.getItem('user'))
-      const docRef = doc(db, "userStorage", local.id);
-      const docSnap = await getDoc(docRef);
+    if (currentUser) {
+      const getSnapshot = async () => {
+        const local = JSON.parse(localStorage.getItem('user'))
+        const docRef = doc(db, "userStorage", local.id);
+        const docSnap = await getDoc(docRef);
 
-      if (docSnap.exists()) {
-        setFavData(docSnap.data());
+        if (docSnap.exists()) {
+          setFavData(docSnap.data());
+        }
+      }
+
+      getSnapshot()
+      if (favData.listFavorite) {
+        setActive(favData.listFavorite.some((item) => item.id === id))
       }
     }
-
-    getSnapshot()
-    if (favData.listFavorite) {
-      setActive(favData.listFavorite.some((item) => item.id === id))
-    }
-
   })
 
   const userId = currentUser && userData.id
@@ -84,13 +85,17 @@ const FavoriteButton = ({ title, id, publisher, short_description, thumbnail, ge
   return (
     currentUser &&
     <div className='game-fav-button '
-      onClick={handleToggleFavorite}>
+      onClick={() => {
+        if (currentUser) {
+          handleToggleFavorite()
+        }
+      }}>
       <span aria-label="Favorito"
         className={`game-fav ${userData ? 'pointer' : 'default'} `}
         style={{ color: active ? 'red' : 'grey' }}>
         <i className='bx bxs-heart'></i>
       </span>
-    </div>
+    </div >
   );
 };
 
