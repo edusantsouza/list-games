@@ -19,9 +19,9 @@ const App = () => {
           <GetGameList>   
             <Fragment>
               <Routes>
-                <Route exac path='/auth' element={<Auth/>}/>
+                <Route exac path="/" element={<Home/>}/>
+                <Route path='/auth' element={<Auth/>}/>
                 <Route path="/categorias" element={<Categories/>}/>
-                <Route path="/" element={<Home/>}/>
                 <Route path="/favoritos" element={<FavoriteList/>}/>
                 <Route path="/wishlist" element={<WishlistList/>}/>
                 <Route path="/biblioteca" element={<CurrentList/>}/>

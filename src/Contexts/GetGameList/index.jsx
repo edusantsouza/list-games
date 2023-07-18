@@ -81,7 +81,7 @@ const GetGameList = (props) => {
       const { title, id, publisher, short_description, thumbnail, genre, platform, game_url } = item;
       return { title, id, publisher, short_description, thumbnail, genre, platform, game_url };
     });
-    setFinalList(...staticList)
+    setFinalList(staticList)
   })
 
 
