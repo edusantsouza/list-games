@@ -9,16 +9,18 @@ import { AuthContext } from '../../Contexts/AuthContext'
 
 const Categorie = () => {
   const { finalList } = useContext(MyContext)
-  const { favData } = useContext(AuthContext)
+  const { favData, currentUSer } = useContext(AuthContext)
 
   console.log(favData)
   return (
     <>
       <NavHeader />
       <Sidebar />
-      {finalList && favData
-        ? <CategoriesContent />
-        : <Spinner />}
+      {currentUSer ?
+        finalList && favData
+          ? <CategoriesContent />
+          : <Spinner />
+        : finalList ? <Spinner /> : <CategoriesContent />}
     </>
   )
 }
