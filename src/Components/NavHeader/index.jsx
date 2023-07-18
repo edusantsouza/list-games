@@ -8,10 +8,12 @@ import Searchbar from './Searchbar'
 import { MyContext } from '../../Contexts/GetGameList'
 import { Link } from 'react-router-dom';
 import './styles.css'
+import { AuthContext } from '../../Contexts/AuthContext'
 
 
 const NavHeader = () => {
   const { setIsOpen, isOpen } = useContext(MyContext)
+  const { currentUser } = useContext(AuthContext)
 
   const openMenu = () => {
     setIsOpen(!isOpen)
@@ -29,10 +31,10 @@ const NavHeader = () => {
 
       <nav className='navheader__options'>
         <div className="navheader__options-btns">
-          <Link to="/favoritos" className="navheader__fav-btn">
-            <FavoriteBtnLine />
+          <Link to={currentUser ? "/favoritos" : "/auth"} className={currentUser ? "navheader__fav-btn" : "navheader__fav-btn unable"}>
+            < FavoriteBtnLine />
           </Link>
-          <Link to="/wishlist" className="navheader__wish-btn">
+          <Link to={currentUser ? "/wishlist" : "/auth"} className={currentUser ? "navheader__wish-btn" : "navheader__wish-btn unable"}>
             <WishListIcon />
           </Link>
         </div>

@@ -32,7 +32,7 @@
 }
 
 .spiner-container-auth {
-  position: absolute;
+  position: fixed;
   inset: 0;
 }
 

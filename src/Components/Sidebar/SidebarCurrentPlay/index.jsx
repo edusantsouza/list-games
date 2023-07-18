@@ -18,7 +18,7 @@ const SidebarCurrentPlay = () => {
         <h3 className="current__title">Jogando agora</h3>
         <nav className='current__games-container'>
           <ul className='current__games-list'>
-            {favData.listCurrent && favData.listCurrent.map((item, index) => {
+            {currentUser && favData.listCurrent.map((item, index) => {
               if (index < 4) {
                 return (
                   <li key={item.title} className="current__game-item">
@@ -34,7 +34,7 @@ const SidebarCurrentPlay = () => {
             })}
           </ul>
         </nav>
-        {favData.listCurrent && favData.listCurrent.length > 4
+        {currentUser
           ? <div className="current__show-all">
             <Link className='current__show-link' to="/biblioteca">Ver todos<i className='bx bx-chevron-down' ></i></Link>
           </div>

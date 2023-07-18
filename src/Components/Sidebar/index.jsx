@@ -53,15 +53,18 @@ const Sidebar = () => {
             <Link onClick={() => {
               setIsOpen(!isOpen)
               clearState()
-            }} className={`aside__list-item  ${currentUser && !currentUser ? `aside-opacity` : `aside-active`}`} to="/biblioteca"><LibraryIcon /> Biblioteca</Link>
+            }} className={`aside__list-item ${!currentUser ? `aside-opacity` : `aside-active`}`}
+              to={currentUser ? "/biblioteca" : "/auth"} ><LibraryIcon /> Biblioteca</Link>
             <Link onClick={() => {
               setIsOpen(!isOpen)
               clearState()
-            }} className={`aside__list-item  ${currentUser && !currentUser ? `aside-opacity` : `aside-active`}`} to="/favoritos"><FavoriteBtnLine /> Favoritos</Link>
+            }} className={`aside__list-item  ${!currentUser ? `aside-opacity` : `aside-active`}`}
+              to={currentUser ? "/favoritos" : "/auth"}><FavoriteBtnLine /> Favoritos</Link>
             <Link onClick={() => {
               setIsOpen(!isOpen)
               clearState()
-            }} className={`aside__list-item  ${currentUser && !currentUser ? `aside-opacity` : `aside-active`}`} to="/wishlist"><WishListIcon /> Lista de desejos</Link>
+            }} className={`aside__list-item  ${!currentUser ? `aside-opacity` : `aside-active`}`}
+              to={currentUser ? "/wishlist" : "/auth"}><WishListIcon /> Lista de desejos</Link>
           </ul>
         </nav>
         <SidebarCurrentPlay />

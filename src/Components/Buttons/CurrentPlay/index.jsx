@@ -1,6 +1,7 @@
 import React, { useState, useContext, useEffect } from 'react'
 import { AuthContext } from '../../../Contexts/AuthContext';
 import './styles.css'
+import { useNavigate } from 'react-router-dom';
 import { doc, updateDoc, arrayUnion, arrayRemove } from "firebase/firestore";
 import { db } from '../../../firebase'
 import 'firebase/firestore';
@@ -8,12 +9,13 @@ import 'firebase/firestore';
 const CurrentPlay = ({ title, id, publisher, short_description, thumbnail, genre, platform, game_url }) => {
   const { userData, favData, currentUser, ids, setIds } = useContext(AuthContext)
   const [active, setActive] = useState(false)
+  const navigate = useNavigate()
 
   useEffect(() => {
-    currentUser &&
+    if (currentUser && favData) {
       setActive(favData.listCurrent.some((item) => item.id === id))
+    }
   })
-
 
   const userId = currentUser && userData.id
 
@@ -74,6 +76,8 @@ const CurrentPlay = ({ title, id, publisher, short_description, thumbnail, genre
       onClick={() => {
         if (currentUser) {
           handleTogglePlaying()
+        } else {
+          navigate("/auth")
         }
       }}>
       <span aria-label="currentPlaying"

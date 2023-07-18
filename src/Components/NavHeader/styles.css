@@ -198,6 +198,32 @@
   stroke: var(--text-white);
 }
 
+
+.navheader__fav-btn.unable,
+.navheader__wish-btn.unable {
+  display: grid;
+  place-items: center;
+  border-radius: 5px;
+  width: 60px;
+  height: 55px;
+  background-color: var(--navy-blue-700);
+  cursor: initial;
+}
+
+.navheader__fav-btn.unable svg path,
+.navheader__wish-btn.unable svg path {
+  transition: unset;
+}
+
+.navheader__fav-btn.unable svg path {
+  fill: var(--grey-color-opacity);
+}
+
+.navheader__wish-btn.unable svg path {
+  stroke: var(--grey-color-opacity);
+}
+
+
 .navheader__profile-btn {
   display: flex;
   flex-direction: column;

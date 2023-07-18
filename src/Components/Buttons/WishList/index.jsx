@@ -1,17 +1,22 @@
 import React, { useState, useContext, useEffect } from 'react'
 import { AuthContext } from '../../../Contexts/AuthContext';
 import { doc, updateDoc, arrayUnion, arrayRemove } from "firebase/firestore";
+import { useNavigate } from 'react-router-dom';
 import { db } from '../../../firebase'
 import 'firebase/firestore';
 import './styles.css'
 
+
 const Wishlist = ({ title, id, publisher, short_description, thumbnail, genre, platform, game_url }) => {
   const { userData, favData, currentUser, ids, setIds } = useContext(AuthContext)
   const [active, setActive] = useState(false)
+  const navigate = useNavigate()
+
 
   useEffect(() => {
-    currentUser &&
+    if (currentUser && favData) {
       setActive(favData.listWishlist.some((item) => item.id === id))
+    }
   })
 
 
@@ -76,6 +81,8 @@ const Wishlist = ({ title, id, publisher, short_description, thumbnail, genre, p
       onClick={() => {
         if (currentUser) {
           handleToggleWishList()
+        } else {
+          navigate("/auth")
         }
       }}>
       <span aria-label="currentPlaying" className={`game-fav ${currentUser ? 'pointer' : 'default'} `} style={{ color: active ? 'cyan' : 'grey' }}>

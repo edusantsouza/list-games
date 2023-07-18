@@ -1,6 +1,7 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { AuthContext } from '../../../Contexts/AuthContext';
 import './styles.css'
+import { useNavigate } from 'react-router-dom';
 import { doc, updateDoc, arrayUnion, arrayRemove, getDoc } from "firebase/firestore";
 import { db } from '../../../firebase'
 import 'firebase/firestore';
@@ -8,21 +9,11 @@ import 'firebase/firestore';
 const FavoriteButton = ({ title, id, publisher, short_description, thumbnail, genre, platform, game_url }) => {
   const { userData, favData, setFavData, currentUser, ids, setIds } = useContext(AuthContext)
   const [active, setActive] = useState(false)
+  const navigate = useNavigate()
 
 
   useEffect(() => {
     if (currentUser) {
-      const getSnapshot = async () => {
-        const local = JSON.parse(localStorage.getItem('user'))
-        const docRef = doc(db, "userStorage", local.id);
-        const docSnap = await getDoc(docRef);
-
-        if (docSnap.exists()) {
-          setFavData(docSnap.data());
-        }
-      }
-
-      getSnapshot()
       if (favData.listFavorite) {
         setActive(favData.listFavorite.some((item) => item.id === id))
       }
@@ -83,15 +74,16 @@ const FavoriteButton = ({ title, id, publisher, short_description, thumbnail, ge
   };
 
   return (
-    currentUser &&
     <div className='game-fav-button '
       onClick={() => {
         if (currentUser) {
           handleToggleFavorite()
+        } else {
+          navigate("/auth")
         }
       }}>
       <span aria-label="Favorito"
-        className={`game-fav ${userData ? 'pointer' : 'default'} `}
+        className={`game-fav ${currentUser ? 'pointer' : 'default'} `}
         style={{ color: active ? 'red' : 'grey' }}>
         <i className='bx bxs-heart'></i>
       </span>
