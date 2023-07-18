@@ -54,12 +54,12 @@ const WishlistListContent = () => {
     <section className="show-games__container">
       <div className="show-games__header">
         <div className="show-games__wrapper">
-          <p className="show-games__title">Seus favoritos</p>
+          <p className="show-games__title">Sua lista de desejos</p>
         </div>
 
       </div>
       <ul className="show-games__list">
-        {favData.listWishlist.length > 0 ? showContent() : <p className="empty-msg">Você ainda não adicionou nada aos seus favoritos.</p>}
+        {favData.listWishlist.length > 0 ? showContent() : <p className="empty-msg">Você ainda não adicionou nada a sua lista de desejos.</p>}
       </ul>
     </section>
   )
