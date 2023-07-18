@@ -20,6 +20,7 @@ const GetGameList = (props) => {
   const [isFav, setIsFav] = useState(1)
   const [storageIds, setStorageIds] = useState(null)
   const [value, setValue] = useState(0)
+  const [finalList, setFinalList] = useState(null)
 
 
   const options = {
@@ -63,6 +64,8 @@ const GetGameList = (props) => {
 
     clearTimeout(id);
   }
+
+
   useEffect(() => {
     fetchWithTimeout('https://games-test-api-81e9fb0d564a.herokuapp.com/api/data', options)
   }, [])
@@ -73,10 +76,14 @@ const GetGameList = (props) => {
     return statusCodeList.some(item => item === code)
   }
 
-  const finalList = list && list.map((item) => {
-    const { title, id, publisher, short_description, thumbnail, genre, platform, game_url } = item;
-    return { title, id, publisher, short_description, thumbnail, genre, platform, game_url };
-  });
+  useEffect(() => {
+    const staticList = list && list.map((item) => {
+      const { title, id, publisher, short_description, thumbnail, genre, platform, game_url } = item;
+      return { title, id, publisher, short_description, thumbnail, genre, platform, game_url };
+    });
+    setFinalList(...staticList)
+  })
+
 
 
   const onValues = {
