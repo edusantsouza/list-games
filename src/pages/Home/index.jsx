@@ -12,7 +12,7 @@ const Home = () => {
     <>
       <NavHeader />
       <Sidebar />
-      {finalList && finalList
+      {finalList
         ? <Main />
         : <Spinner error={error} statusCodeValidation={statusCodeValidation} />}
     </>

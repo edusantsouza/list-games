@@ -20,7 +20,7 @@ const Categorie = () => {
         finalList && favData
           ? <CategoriesContent />
           : <Spinner />
-        : finalList ? <Spinner /> : <CategoriesContent />}
+        : finalList ? <CategoriesContent /> : <Spinner />}
     </>
   )
 }
