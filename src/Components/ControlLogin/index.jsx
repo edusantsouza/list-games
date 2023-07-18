@@ -38,8 +38,9 @@ const ControlLogin = () => {
       setSpinner(true)
       setTimeout(() => {
         navigate('/')
+        window.location.reload()
         setSpinner(false)
-      }, 1000)
+      }, 1500)
       setRefName(nameRef.current.value)
     } catch {
       setError("Falha na criação da conta.")

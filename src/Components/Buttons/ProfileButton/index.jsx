@@ -15,6 +15,7 @@ const ProfileButton = () => {
       await logout()
       navigate('/')
       localStorage.removeItem('user')
+      window.location.reload()
     } catch {
     }
   }
