@@ -12,9 +12,9 @@ const FavoritesListContent = () => {
   const { finalList } = useContext(MyContext)
   const { favData } = useContext(AuthContext)
 
-  // let arr = finalList ? favData.listFavorite : null
+  let arr = favData.listFavorite
   const showContent = () => {
-    return finalList && finalList.map((item) => {
+    return finalList && arr.map((item) => {
       return (
         <li key={item.id} className="game-item">
           <img src={item.thumbnail} alt={item.title} className='game-item-img' />
