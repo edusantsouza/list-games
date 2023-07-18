@@ -12,14 +12,17 @@ const Categorie = () => {
   const { favData, currentUser } = useContext(AuthContext)
 
   return (
+
     <>
       <NavHeader />
       <Sidebar />
-      {currentUser
-        ? finalList && favData
+      {finalList &&
+        !currentUser
+        ? <CategoriesContent />
+        : favData
           ? <CategoriesContent />
           : <Spinner />
-        : finalList ? <CategoriesContent /> : <Spinner />}
+      }
     </>
   )
 }
