@@ -12,9 +12,9 @@ const FavoritesListContent = () => {
   const { finalList } = useContext(MyContext)
   const { favData } = useContext(AuthContext)
 
-  let arr = favData.listFavorite && favData ? favData.listFavorite : null
+  // let arr = finalList ? favData.listFavorite : null
   const showContent = () => {
-    return arr.length > 0 && arr.map((item) => {
+    return finalList && finalList.map((item) => {
       return (
         <li key={item.id} className="game-item">
           <img src={item.thumbnail} alt={item.title} className='game-item-img' />
@@ -52,7 +52,7 @@ const FavoritesListContent = () => {
 
 
   return (
-    favData.listFavorite &&
+    finalList &&
     <section className="show-games__container">
       <div className="show-games__header">
         <div className="show-games__wrapper">
@@ -61,7 +61,7 @@ const FavoritesListContent = () => {
 
       </div>
       <ul className="show-games__list">
-        {favData.listFavorite.length > 0 ? showContent() : <p className="empty-msg">Você ainda não adicionou nada aos seus favoritos.</p>}
+        {finalList ? showContent() : <p className="empty-msg">Você ainda não adicionou nada aos seus favoritos.</p>}
       </ul>
     </section>
   )

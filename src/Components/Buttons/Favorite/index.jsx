@@ -1,18 +1,13 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { AuthContext } from '../../../Contexts/AuthContext';
-import { MyContext } from '../../../Contexts/GetGameList';
 import './styles.css'
 import { doc, updateDoc, arrayUnion, arrayRemove, getDoc } from "firebase/firestore";
 import { db } from '../../../firebase'
 import 'firebase/firestore';
 
 const FavoriteButton = ({ title, id, publisher, short_description, thumbnail, genre, platform, game_url }) => {
-  const { userData, favData, setFavData, currentUser } = useContext(AuthContext)
-  const { ids, setIds } = useContext(MyContext)
+  const { userData, favData, setFavData, currentUser, ids, setIds } = useContext(AuthContext)
   const [active, setActive] = useState(false)
-
-
-
 
 
   useEffect(() => {
@@ -31,8 +26,7 @@ const FavoriteButton = ({ title, id, publisher, short_description, thumbnail, ge
       setActive(favData.listFavorite.some((item) => item.id === id))
     }
 
-  }, [])
-
+  })
 
   const userId = currentUser && userData.id
 
@@ -87,10 +81,8 @@ const FavoriteButton = ({ title, id, publisher, short_description, thumbnail, ge
     }
   };
 
-
-
   return (
-    favData.listFavorite &&
+    currentUser &&
     <div className='game-fav-button '
       onClick={handleToggleFavorite}>
       <span aria-label="Favorito"

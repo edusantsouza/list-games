@@ -21,7 +21,7 @@ const SidebarCurrentPlay = () => {
             {favData.listCurrent && favData.listCurrent.map((item, index) => {
               if (index < 4) {
                 return (
-                  <li className="current__game-item">
+                  <li key={item.title} className="current__game-item">
                     <img src={item.thumbnail} alt={item.title} className='current__game-image' />
                     <div className="current__game-info">
                       <p className='current__game-title'>{item.title}</p>

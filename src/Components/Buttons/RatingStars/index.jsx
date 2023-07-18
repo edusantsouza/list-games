@@ -1,6 +1,5 @@
 import React, { useState, useContext, useEffect } from 'react';
 import './styles.css'
-import { MyContext } from '../../../Contexts/GetGameList';
 import { AuthContext } from '../../../Contexts/AuthContext';
 import { Rating } from '@mui/material';
 import { doc, updateDoc, arrayUnion, arrayRemove } from "firebase/firestore";
@@ -9,10 +8,7 @@ import 'firebase/firestore';
 
 
 const RatingStars = ({ title, id }) => {
-  const [rating, setRating] = useState(0)
-  const { getUser } = useContext(AuthContext)
-  const { rate, setRate, setErrorMessage, ids, setIds } = useContext(MyContext)
-  const { userData, favData, currentUser } = useContext(AuthContext)
+  const { userData, favData, currentUser, ids } = useContext(AuthContext)
   const [value, setValue] = useState(0)
 
 
@@ -23,13 +19,12 @@ const RatingStars = ({ title, id }) => {
       setValue(getStar.element)
     }
 
-  }, [])
+  })
+
   const userId = currentUser && userData.id
 
   const addElement = async (element) => {
 
-    const updateValue = value
-    console.log(updateValue)
     const docRef = doc(db, "userStorage", userId);
     try {
       await updateDoc(docRef, {
@@ -48,10 +43,9 @@ const RatingStars = ({ title, id }) => {
         name="rate"
         size="large"
         value={value}
-        onChange={(event, newValue) => {
+        onChange={(event) => {
           addElement(event.target.value)
-          setValue(newValue);
-          console.log(event.target.value)
+          setValue(Number(event.target.value));
         }}
       />
     </div>

@@ -48,8 +48,6 @@ const WishlistListContent = () => {
     })
   }
 
-
-
   return (
     <section className="show-games__container">
       <div className="show-games__header">

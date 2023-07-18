@@ -18,7 +18,6 @@ const GetGameList = (props) => {
   const [errorMessage, setErrorMessage] = useState('')
   const [arrayData, setArrayData] = useState([]);
   const [isFav, setIsFav] = useState(1)
-  const [ids, setIds] = useState([])
   const [storageIds, setStorageIds] = useState(null)
   const [value, setValue] = useState(0)
 
@@ -85,8 +84,6 @@ const GetGameList = (props) => {
     setValue,
     statusCodeValidation,
     storageIds,
-    ids,
-    setIds,
     isFav,
     setIsFav,
     arrayData,

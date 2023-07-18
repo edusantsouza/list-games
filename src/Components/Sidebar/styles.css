@@ -1,7 +1,7 @@
 .aside__container {
   grid-area: sidebar;
   width: 300px;
-  height: auto;
+  height: 95vh;
   padding: 4rem 2rem;
   background: var(--navy-blue-700);
   margin-block: 2rem;

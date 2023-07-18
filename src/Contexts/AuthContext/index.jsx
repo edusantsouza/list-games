@@ -14,27 +14,27 @@ export const AuthProvider = ({ children }) => {
   const [userData, setUserData] = useState()
   const [currentUser, setCurrentUser] = useState(false)
   const [users, setUsers] = useState()
-  const [snapshotData, setSnapshotData] = useState()
   const [refEmail, setRefEmail] = useState('')
   const [refName, setRefName] = useState('')
   const [favoritesList, setFavoritesList] = useState([])
-  const [userID, setUserID] = useState(null)
   const [favData, setFavData] = useState(null)
+  const [ids, setIds] = useState([])
   const userCollectionRef = collection(db, 'userStorage')
 
-  const getSnapshot = async () => {
+  useEffect(() => {
+    const getSnapshot = async () => {
+      const local = JSON.parse(localStorage.getItem('user'))
+      const docRef = doc(db, "userStorage", local.id);
+      const docSnap = await getDoc(docRef);
 
-
-    const local = JSON.parse(localStorage.getItem('user'))
-    const docRef = doc(db, "userStorage", local.id);
-    const docSnap = await getDoc(docRef);
-
-    if (docSnap.exists()) {
-      setFavData(docSnap.data());
+      if (docSnap.exists()) {
+        setFavData(docSnap.data());
+      }
     }
-  }
 
-  getSnapshot()
+    getSnapshot()
+
+  }, [ids])
 
 
 
@@ -76,15 +76,12 @@ export const AuthProvider = ({ children }) => {
     return unsubscribe
   }, [])
 
-
-
-
-
   const value = {
+    ids,
+    setIds,
     setFavData,
     favData,
     favoritesList,
-    snapshotData,
     setUserData,
     currentUser,
     spinner,

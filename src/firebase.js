@@ -4,12 +4,12 @@ import 'firebase/compat/auth'
 import { addDoc, collection, getDocs } from 'firebase/firestore'
 
 const firebaseConfig = {
-    apiKey: "AIzaSyBZMzXyhkYC_-ZuxKoykc-1xOmQRUTj-PQ",
-    authDomain: "game-development-6063a.firebaseapp.com",
-    projectId: "game-development-6063a",
-    storageBucket: "game-development-6063a.appspot.com",
-    messagingSenderId: "515403704453",
-    appId: "1:515403704453:web:fa12946d3100e194e521ec"
+  apiKey: "AIzaSyCih4p1Wb0DPtWPP-NpmNxxvL5E4dFwGvo",
+  authDomain: "game-production-a138d.firebaseapp.com",
+  projectId: "game-production-a138d",
+  storageBucket: "game-production-a138d.appspot.com",
+  messagingSenderId: "876724391839",
+  appId: "1:876724391839:web:da723b29dfa325eccf37aa"
   };
 
 const app = firebase.initializeApp(firebaseConfig)

@@ -1,5 +1,4 @@
 import React, { useState, useContext, useEffect } from 'react'
-import { MyContext } from '../../../Contexts/GetGameList';
 import { AuthContext } from '../../../Contexts/AuthContext';
 import { doc, updateDoc, arrayUnion, arrayRemove } from "firebase/firestore";
 import { db } from '../../../firebase'
@@ -7,14 +6,13 @@ import 'firebase/firestore';
 import './styles.css'
 
 const Wishlist = ({ title, id, publisher, short_description, thumbnail, genre, platform, game_url }) => {
-  const { userData, favData, currentUser } = useContext(AuthContext)
-  const { ids, setIds } = useContext(MyContext)
+  const { userData, favData, currentUser, ids, setIds } = useContext(AuthContext)
   const [active, setActive] = useState(false)
 
   useEffect(() => {
     setActive(favData.listWishlist.some((item) => item.id === id))
 
-  }, [])
+  })
 
 
   const userId = currentUser && userData.id
@@ -62,7 +60,6 @@ const Wishlist = ({ title, id, publisher, short_description, thumbnail, genre, p
         addItem(id)
         addElement()
         setActive(true)
-        console.log(favData)
         return
       } else if (favData.listWishlist.some((item) => item.id === id)) {
         removeItem(id)

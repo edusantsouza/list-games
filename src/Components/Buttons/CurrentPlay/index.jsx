@@ -1,5 +1,4 @@
 import React, { useState, useContext, useEffect } from 'react'
-import { MyContext } from '../../../Contexts/GetGameList';
 import { AuthContext } from '../../../Contexts/AuthContext';
 import './styles.css'
 import { doc, updateDoc, arrayUnion, arrayRemove } from "firebase/firestore";
@@ -7,16 +6,12 @@ import { db } from '../../../firebase'
 import 'firebase/firestore';
 
 const CurrentPlay = ({ title, id, publisher, short_description, thumbnail, genre, platform, game_url }) => {
-  const [isPlaying, setIsPlaying] = useState(false);
-  const { getUser } = useContext(AuthContext)
-  const { userData, favData, currentUser } = useContext(AuthContext)
-  const { ids, setIds } = useContext(MyContext)
+  const { userData, favData, currentUser, ids, setIds } = useContext(AuthContext)
   const [active, setActive] = useState(false)
 
   useEffect(() => {
     setActive(favData.listCurrent.some((item) => item.id === id))
-
-  }, [])
+  })
 
 
   const userId = currentUser && userData.id
@@ -55,15 +50,12 @@ const CurrentPlay = ({ title, id, publisher, short_description, thumbnail, genre
     setIds(updatedItems);
   };
 
-
-
   const handleTogglePlaying = () => {
     if (userData && currentUser) {
       if (!favData.listCurrent.some((item) => item.id === id)) {
         addItem(id)
         addElement()
         setActive(true)
-        console.log(favData)
         return
       } else if (favData.listCurrent.some((item) => item.id === id)) {
         removeItem(id)
