@@ -16,12 +16,9 @@ const Categorie = () => {
     <>
       <NavHeader />
       <Sidebar />
-      {finalList &&
-        !currentUser
+      {finalList
         ? <CategoriesContent />
-        : favData
-          ? <CategoriesContent />
-          : <Spinner />
+        : <Spinner />
       }
     </>
   )
