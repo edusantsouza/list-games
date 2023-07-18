@@ -41,9 +41,8 @@ const FavoriteButton = ({ title, id, publisher, short_description, thumbnail, ge
       await updateDoc(docRef, {
         listFavorite: arrayRemove({ title, id, publisher, short_description, thumbnail, genre, platform, game_url })
       });
-      console.log("Elemento removido com sucesso!");
     } catch (error) {
-      console.error("Erro ao adicionar novo elemento ao array:", error);
+      console.error(error);
     }
   };
 
