@@ -6,15 +6,15 @@ import Spinner from '../../Components/Spinner'
 import { MyContext } from '../../Contexts/GetGameList'
 
 const Home = () => {
-  const { finalList } = useContext(MyContext)
+  const { finalList, error, statusCodeValidation } = useContext(MyContext)
 
   return (
     <>
       <NavHeader />
       <Sidebar />
-      {true
+      {finalList && finalList
         ? <Main />
-        : <Spinner />}
+        : <Spinner error={error} statusCodeValidation={statusCodeValidation} />}
     </>
   )
 }

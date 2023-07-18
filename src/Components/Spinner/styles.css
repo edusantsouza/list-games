@@ -24,6 +24,27 @@
   animation: spin-anim 1.2s linear infinite;
 }
 
+.loader-container.err {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2.4rem;
+}
+
+.reload-btn {
+  padding: 1rem 2rem;
+  background-color: var(--dark-cyan);
+  border: none;
+  border-radius: 5px;
+  color: var(--text-white);
+}
+
+.error-msg {
+  font-size: var(--h3-font-size);
+  text-align: center;
+}
+
 @keyframes spin-anim {
   0% {
     transform: rotate(0deg);
@@ -37,5 +58,11 @@
 @media(max-width: 996px) {
   .spiner-container {
     margin-top: 6rem;
+  }
+}
+
+@media(max-width: 768px) {
+  .error-msg {
+    font-size: var(--normal-font-size);
   }
 }

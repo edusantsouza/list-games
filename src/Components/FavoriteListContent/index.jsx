@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import { MyContext } from '../../Contexts/GetGameList';
 import Favorite from '../Buttons/Favorite'
 import WishList from '../Buttons/WishList'
@@ -12,7 +12,7 @@ const FavoritesListContent = () => {
   const { finalList } = useContext(MyContext)
   const { favData } = useContext(AuthContext)
 
-  let arr = favData ? favData.listFavorite : null
+  let arr = favData.listFavorite && favData ? favData.listFavorite : null
   const showContent = () => {
     return arr.length > 0 && arr.map((item) => {
       return (
@@ -52,6 +52,7 @@ const FavoritesListContent = () => {
 
 
   return (
+    favData.listFavorite &&
     <section className="show-games__container">
       <div className="show-games__header">
         <div className="show-games__wrapper">

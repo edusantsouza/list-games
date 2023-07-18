@@ -2,17 +2,34 @@ import React, { useState, useContext, useEffect } from 'react';
 import { AuthContext } from '../../../Contexts/AuthContext';
 import { MyContext } from '../../../Contexts/GetGameList';
 import './styles.css'
-import { doc, updateDoc, arrayUnion, arrayRemove } from "firebase/firestore";
+import { doc, updateDoc, arrayUnion, arrayRemove, getDoc } from "firebase/firestore";
 import { db } from '../../../firebase'
 import 'firebase/firestore';
 
 const FavoriteButton = ({ title, id, publisher, short_description, thumbnail, genre, platform, game_url }) => {
-  const { userData, favData, currentUser } = useContext(AuthContext)
+  const { userData, favData, setFavData, currentUser } = useContext(AuthContext)
   const { ids, setIds } = useContext(MyContext)
   const [active, setActive] = useState(false)
 
+
+
+
+
   useEffect(() => {
-    setActive(favData.listFavorite.some((item) => item.id === id))
+    const getSnapshot = async () => {
+      const local = JSON.parse(localStorage.getItem('user'))
+      const docRef = doc(db, "userStorage", local.id);
+      const docSnap = await getDoc(docRef);
+
+      if (docSnap.exists()) {
+        setFavData(docSnap.data());
+      }
+    }
+
+    getSnapshot()
+    if (favData.listFavorite) {
+      setActive(favData.listFavorite.some((item) => item.id === id))
+    }
 
   }, [])
 
@@ -26,9 +43,8 @@ const FavoriteButton = ({ title, id, publisher, short_description, thumbnail, ge
       await updateDoc(docRef, {
         listFavorite: arrayUnion({ title, id, publisher, short_description, thumbnail, genre, platform, game_url })
       });
-      console.log("Novo elemento adicionado ao array com sucesso!");
     } catch (error) {
-      console.error("Erro ao adicionar novo elemento ao array:", error);
+      console.error(error)
     }
   };
 
@@ -57,13 +73,12 @@ const FavoriteButton = ({ title, id, publisher, short_description, thumbnail, ge
 
   const handleToggleFavorite = () => {
     if (userData && currentUser) {
-      if (!favData.listFavorite.some((item) => item.id === id)) {
+      if (favData.listFavorite && !favData.listFavorite.some((item) => item.id === id)) {
         addItem(id)
         addElement()
         setActive(true)
-        console.log(favData)
         return
-      } else if (favData.listFavorite.some((item) => item.id === id)) {
+      } else if (favData.listFavorite && favData.listFavorite.some((item) => item.id === id)) {
         removeItem(id)
         removeElement()
         setActive(false)
@@ -75,6 +90,7 @@ const FavoriteButton = ({ title, id, publisher, short_description, thumbnail, ge
 
 
   return (
+    favData.listFavorite &&
     <div className='game-fav-button '
       onClick={handleToggleFavorite}>
       <span aria-label="Favorito"

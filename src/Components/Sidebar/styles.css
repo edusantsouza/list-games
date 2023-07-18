@@ -1,7 +1,7 @@
 .aside__container {
   grid-area: sidebar;
   width: 300px;
-  min-height: 95vh;
+  height: auto;
   padding: 4rem 2rem;
   background: var(--navy-blue-700);
   margin-block: 2rem;
@@ -157,6 +157,7 @@
     width: 100%;
     align-items: center;
     justify-content: flex-end;
+
   }
 }
 

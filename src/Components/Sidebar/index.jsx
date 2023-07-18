@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useRef } from 'react'
 import PlayMastersLogo from '../../assets/assetsComponents/PlayMastersLogo'
 import HomeIcon from '../../assets/assetsComponents/HomeIcon'
 import CategorieIcon from '../../assets/assetsComponents/CategorieIcon'
@@ -16,6 +16,7 @@ import './styles.css'
 const Sidebar = () => {
   const { isOpen, setIsOpen } = useContext(MyContext)
   const { currentUser } = useContext(AuthContext)
+  const modal = useRef()
 
   const clearState = () => {
   }
@@ -24,7 +25,13 @@ const Sidebar = () => {
   }
 
   return (
-    <aside className={`aside__modal ${!isOpen ? '' : `aside-visible`}`}>
+    <aside ref={modal}
+      onClick={(e) => {
+        if (e.target === modal.current) {
+          setIsOpen(!isOpen)
+        }
+      }}
+      className={`aside__modal ${!isOpen ? '' : `aside-visible`}`}>
       <div className={`aside__container ${!isOpen ? '' : `aside-visible`}`}>
         <div className="aside__logo">
           <PlayMastersLogo />
@@ -34,11 +41,27 @@ const Sidebar = () => {
         </div>
         <nav className='aside__options'>
           <ul className='aside__list'>
-            <Link className='aside__list-item aside-active' to="/"><HomeIcon />Início</Link>
-            <Link onClick={clearState} className='aside__list-item aside-active' to="/categorias"><CategorieIcon /> Categorias</Link>
-            <Link onClick={clearState} className={`aside__list-item  ${!currentUser ? `aside-opacity` : `aside-active`}`} to="/biblioteca"><LibraryIcon /> Biblioteca</Link>
-            <Link onClick={clearState} className={`aside__list-item  ${!currentUser ? `aside-opacity` : `aside-active`}`} to="/favoritos"><FavoriteBtnLine /> Favoritos</Link>
-            <Link onClick={clearState} className={`aside__list-item  ${!currentUser ? `aside-opacity` : `aside-active`}`} to="/wishlist"><WishListIcon /> Lista de desejos</Link>
+            <Link
+              onClick={() => {
+                setIsOpen(!isOpen)
+                clearState()
+              }} className='aside__list-item aside-active' to="/"><HomeIcon />Início</Link>
+            <Link onClick={() => {
+              setIsOpen(!isOpen)
+              clearState()
+            }} className='aside__list-item aside-active' to="/categorias"><CategorieIcon /> Categorias</Link>
+            <Link onClick={() => {
+              setIsOpen(!isOpen)
+              clearState()
+            }} className={`aside__list-item  ${currentUser && !currentUser ? `aside-opacity` : `aside-active`}`} to="/biblioteca"><LibraryIcon /> Biblioteca</Link>
+            <Link onClick={() => {
+              setIsOpen(!isOpen)
+              clearState()
+            }} className={`aside__list-item  ${currentUser && !currentUser ? `aside-opacity` : `aside-active`}`} to="/favoritos"><FavoriteBtnLine /> Favoritos</Link>
+            <Link onClick={() => {
+              setIsOpen(!isOpen)
+              clearState()
+            }} className={`aside__list-item  ${currentUser && !currentUser ? `aside-opacity` : `aside-active`}`} to="/wishlist"><WishListIcon /> Lista de desejos</Link>
           </ul>
         </nav>
         <SidebarCurrentPlay />

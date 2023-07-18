@@ -30,9 +30,9 @@ const CategoriesContent = () => {
 
   const getByCategories = () => {
     return finalList && finalList.map((item) => {
-      const { title, id, publisher, short_description, thumbnail, genre, platform } = item;
+      const { title, id, publisher, short_description, thumbnail, genre, platform, game_url } = item;
       if (categorie === genre) {
-        return { title, id, publisher, short_description, thumbnail, genre, platform };
+        return { title, id, publisher, short_description, thumbnail, genre, platform, game_url };
       }
     }).filter((element) => element !== undefined)
   }
@@ -49,13 +49,12 @@ const CategoriesContent = () => {
 
   const getByTitles = () => {
     return finalList && finalList.map((item) => {
-      const { title, id, publisher, short_description, thumbnail, genre, platform } = item;
+      const { title, id, publisher, short_description, thumbnail, genre, platform, game_url } = item;
       if (finalSearchValue && item.title.includes(finalSearchValue)) {
-        return { title, id, publisher, short_description, thumbnail, genre, platform };
+        return { title, id, publisher, short_description, thumbnail, genre, platform, game_url };
       }
     }).filter((element) => element !== undefined)
   }
-
 
   const showContentsByCategorie = () => {
     let array

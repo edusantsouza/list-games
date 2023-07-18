@@ -28,9 +28,8 @@ const CurrentPlay = ({ title, id, publisher, short_description, thumbnail, genre
       await updateDoc(docRef, {
         listCurrent: arrayUnion({ title, id, publisher, short_description, thumbnail, genre, platform, game_url })
       });
-      console.log("Novo elemento adicionado ao array com sucesso!");
     } catch (error) {
-      console.error("Erro ao adicionar novo elemento ao array:", error);
+      console.error(error)
     }
   };
 
@@ -41,9 +40,8 @@ const CurrentPlay = ({ title, id, publisher, short_description, thumbnail, genre
       await updateDoc(docRef, {
         listCurrent: arrayRemove({ title, id, publisher, short_description, thumbnail, genre, platform, game_url })
       });
-      console.log("Elemento removido com sucesso!");
     } catch (error) {
-      console.error("Erro ao adicionar novo elemento ao array:", error);
+      console.error(error);
     }
   };
 

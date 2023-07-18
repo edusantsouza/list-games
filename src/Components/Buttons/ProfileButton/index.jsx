@@ -53,11 +53,6 @@ const ProfileButton = () => {
     )
   }
 
-  useEffect(() => {
-    if (currentUser) {
-      setUserData(JSON.parse(localStorage.getItem('user')))
-    }
-  }, [currentUser])
 
 
   return currentUser ? onLogin() : onLoggof()

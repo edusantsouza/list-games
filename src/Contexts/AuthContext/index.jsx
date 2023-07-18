@@ -22,19 +22,20 @@ export const AuthProvider = ({ children }) => {
   const [favData, setFavData] = useState(null)
   const userCollectionRef = collection(db, 'userStorage')
 
-
   const getSnapshot = async () => {
-    const docRef = doc(db, "userStorage", "XCIciyOJBDmTEp5CiKoL");
+
+
+    const local = JSON.parse(localStorage.getItem('user'))
+    const docRef = doc(db, "userStorage", local.id);
     const docSnap = await getDoc(docRef);
 
     if (docSnap.exists()) {
       setFavData(docSnap.data());
-    } else {
-      // docSnap.data() will be undefined in this case
-      console.log("No such document!");
     }
   }
+
   getSnapshot()
+
 
 
   const getUserInfo = async () => {
@@ -42,6 +43,7 @@ export const AuthProvider = ({ children }) => {
     const result = data.docs.map((item) => ({ ...item.data(), id: item.id }))
     const userInfo = result.filter(item => item.email === refEmail)
     const resolve = userInfo[0]
+    console.log('aqui ', resolve)
     localStorage.setItem('user', JSON.stringify(resolve));
   }
 
@@ -66,7 +68,7 @@ export const AuthProvider = ({ children }) => {
     const unsubscribe = myAuth.onAuthStateChanged(user => {
       setCurrentUser(user)
       setLoading(false)
-      setUserID(user.uid)
+      setUserData(JSON.parse(localStorage.getItem('user')))
     })
 
     firebase.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL);
@@ -75,15 +77,11 @@ export const AuthProvider = ({ children }) => {
   }, [])
 
 
-  if (true) {
-    const retrieveData = onSnapshot(doc(db, "userStorage", "ZQOT8pQVRc4dv9Ejpa9d"), (doc) => {
-      setSnapshotData(doc.data());
-    });
 
-    retrieveData()
-  }
+
 
   const value = {
+    setFavData,
     favData,
     favoritesList,
     snapshotData,
