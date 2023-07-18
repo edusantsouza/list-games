@@ -15,8 +15,8 @@ const Categorie = () => {
     <>
       <NavHeader />
       <Sidebar />
-      {currentUser ?
-        finalList && favData
+      {currentUser
+        ? finalList && favData
           ? <CategoriesContent />
           : <Spinner />
         : finalList ? <CategoriesContent /> : <Spinner />}

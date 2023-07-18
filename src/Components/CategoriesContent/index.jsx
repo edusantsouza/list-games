@@ -1,4 +1,4 @@
-import React, { useState, useRef, useContext } from 'react'
+import React, { useState, useContext } from 'react'
 import { MyContext } from '../../Contexts/GetGameList';
 import Favorite from '../Buttons/Favorite'
 import WishList from '../Buttons/WishList'
@@ -10,8 +10,7 @@ import './styles.css'
 const CategoriesContent = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [showFilter, setShowFilter] = useState(false)
-  const { finalList, search, setSearch, categorie, setCategorie, userLogged } = useContext(MyContext)
-  const { currentUser } = useContext(AuthContext)
+  const { finalList, search, setSearch, categorie, setCategorie } = useContext(MyContext)
 
   const handleClickNext = () => {
     setCurrentPage(currentPage + 1);
@@ -26,7 +25,6 @@ const CategoriesContent = () => {
   })
 
   let uniqueGenres = [...new Set(genres)]
-
 
   const getByCategories = () => {
     return finalList && finalList.map((item) => {

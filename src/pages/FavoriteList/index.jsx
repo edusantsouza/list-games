@@ -7,13 +7,13 @@ import FavoritesListContent from '../../Components/FavoriteListContent'
 
 
 const FavoriteList = () => {
-  const { finalList } = useContext(MyContext)
+  const { favData } = useContext(MyContext)
 
   return (
     <>
       <NavHeader />
       <Sidebar />
-      {finalList
+      {favData
         ? <FavoritesListContent />
         : <Spinner />}
     </>
