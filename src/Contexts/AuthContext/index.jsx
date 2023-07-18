@@ -22,17 +22,19 @@ export const AuthProvider = ({ children }) => {
   const userCollectionRef = collection(db, 'userStorage')
 
   useEffect(() => {
-    const getSnapshot = async () => {
-      const local = JSON.parse(localStorage.getItem('user'))
-      const docRef = doc(db, "userStorage", local.id);
-      const docSnap = await getDoc(docRef);
+    if (currentUser) {
+      const getSnapshot = async () => {
+        const local = JSON.parse(localStorage.getItem('user'))
+        const docRef = doc(db, "userStorage", local.id);
+        const docSnap = await getDoc(docRef);
 
-      if (docSnap.exists()) {
-        setFavData(docSnap.data());
+        if (docSnap.exists()) {
+          setFavData(docSnap.data());
+        }
       }
-    }
 
-    getSnapshot()
+      getSnapshot()
+    }
 
   }, [ids])
 

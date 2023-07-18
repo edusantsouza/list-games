@@ -68,9 +68,6 @@ const Sidebar = () => {
           </ul>
         </nav>
         <SidebarCurrentPlay />
-        <div onClick={openMenu} className='close-icon'>
-          <CloseIcon />
-        </div>
       </div>
 
     </aside>
