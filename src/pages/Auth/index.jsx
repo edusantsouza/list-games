@@ -1,10 +1,12 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import ControlLogin from '../../Components/ControlLogin'
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../Contexts/AuthContext';
 
 import './styles.css'
 
 const Auth = () => {
+  const { spinner } = useContext(AuthContext)
   return (
     <section className="login-screen">
       <ControlLogin />
@@ -16,6 +18,12 @@ const Auth = () => {
           Voltar
         </button>
       </Link>
+      {spinner &&
+        <div className="spiner-container-auth">
+          <div className="loader-container-auth">
+            <div className="spinner-auth"></div>
+          </div>
+        </div>}
     </section>
   )
 }

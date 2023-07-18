@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext } from 'react'
 import PlayMastersLogo from '../../assets/assetsComponents/PlayMastersLogo'
 import HomeIcon from '../../assets/assetsComponents/HomeIcon'
 import CategorieIcon from '../../assets/assetsComponents/CategorieIcon'
@@ -11,13 +11,11 @@ import ProfileButton from '../Buttons/ProfileButton'
 import { AuthContext } from '../../Contexts/AuthContext'
 import { MyContext } from '../../Contexts/GetGameList'
 import { Link } from 'react-router-dom';
-
 import './styles.css'
 
 const Sidebar = () => {
   const { isOpen, setIsOpen } = useContext(MyContext)
-
-  const { getUser, setCategorie, search } = useContext(AuthContext)
+  const { currentUser } = useContext(AuthContext)
 
   const clearState = () => {
   }
@@ -38,9 +36,9 @@ const Sidebar = () => {
           <ul className='aside__list'>
             <Link className='aside__list-item aside-active' to="/"><HomeIcon />Início</Link>
             <Link onClick={clearState} className='aside__list-item aside-active' to="/categorias"><CategorieIcon /> Categorias</Link>
-            <Link onClick={clearState} className={`aside__list-item  ${!getUser ? `aside-opacity` : `aside-active`}`} to="/biblioteca"><LibraryIcon /> Biblioteca</Link>
-            <Link onClick={clearState} className={`aside__list-item  ${!getUser ? `aside-opacity` : `aside-active`}`} to="/favoritos"><FavoriteBtnLine /> Favoritos</Link>
-            <Link onClick={clearState} className={`aside__list-item  ${!getUser ? `aside-opacity` : `aside-active`}`} to="/wishlist"><WishListIcon /> Lista de desejos</Link>
+            <Link onClick={clearState} className={`aside__list-item  ${!currentUser ? `aside-opacity` : `aside-active`}`} to="/biblioteca"><LibraryIcon /> Biblioteca</Link>
+            <Link onClick={clearState} className={`aside__list-item  ${!currentUser ? `aside-opacity` : `aside-active`}`} to="/favoritos"><FavoriteBtnLine /> Favoritos</Link>
+            <Link onClick={clearState} className={`aside__list-item  ${!currentUser ? `aside-opacity` : `aside-active`}`} to="/wishlist"><WishListIcon /> Lista de desejos</Link>
           </ul>
         </nav>
         <SidebarCurrentPlay />

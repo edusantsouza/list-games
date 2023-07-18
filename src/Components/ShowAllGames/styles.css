@@ -42,6 +42,11 @@
   border-radius: 5px;
 }
 
+.game-item-img.control {
+  max-width: 300px;
+
+}
+
 .game-item-section {
   display: flex;
   width: 100%;

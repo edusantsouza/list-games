@@ -18,6 +18,8 @@ const GetGameList = (props) => {
   const [errorMessage, setErrorMessage] = useState('')
   const [arrayData, setArrayData] = useState([]);
   const [isFav, setIsFav] = useState(1)
+  const [ids, setIds] = useState([])
+  const [storageIds, setStorageIds] = useState(null)
 
 
 
@@ -48,6 +50,7 @@ const GetGameList = (props) => {
         throw response
       })
       .then((data) => {
+
         setList(data)
       })
       .catch(err => {
@@ -78,6 +81,9 @@ const GetGameList = (props) => {
 
 
   const onValues = {
+    storageIds,
+    ids,
+    setIds,
     isFav,
     setIsFav,
     arrayData,

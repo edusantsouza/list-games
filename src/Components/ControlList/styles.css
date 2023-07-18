@@ -1,0 +1,14 @@
+.img-game {
+
+  background-color: red;
+}
+
+.div-wrapper {
+  padding: 1rem;
+  padding-left: .5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  max-width: 300px;
+}

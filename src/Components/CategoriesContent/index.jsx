@@ -75,14 +75,26 @@ const CategoriesContent = () => {
             <div className="game-item-section">
               <span className='game-item-categorie'>{item.genre}</span>
               <div className="game-item-btns">
-                <Favorite value={true} id={item.id} title={item.title} />
-                <WishList id={item.id} title={item.title} />
-                <CurrentPlay id={item.id} title={item.title} />
+                <Favorite id={item.id} title={item.title}
+                  publisher={item.publisher} short_description={item.short_description}
+                  thumbnail={item.thumbnail} genre={item.genre} platform={item.platform}
+                  game_url={item.game_url} />
+                <WishList id={item.id} title={item.title}
+                  publisher={item.publisher} short_description={item.short_description}
+                  thumbnail={item.thumbnail} genre={item.genre} platform={item.platform}
+                  game_url={item.game_url} />
+                <CurrentPlay id={item.id} title={item.title}
+                  publisher={item.publisher} short_description={item.short_description}
+                  thumbnail={item.thumbnail} genre={item.genre} platform={item.platform}
+                  game_url={item.game_url} />
               </div>
             </div>
             <div className="game-item-section">
               <p className="game-item-title">{item.title}</p>
-              <RatingStars id={item.id} title={item.title} />
+              <RatingStars id={item.id} title={item.title}
+                publisher={item.publisher} short_description={item.short_description}
+                thumbnail={item.thumbnail} genre={item.genre} platform={item.platform}
+                game_url={item.game_url} />
             </div>
           </div>
         </li>

@@ -1,9 +1,6 @@
 import React, { useState } from 'react'
-import RatingStars from '../Buttons/RatingStars'
-import CurrentPlay from '../Buttons/CurrentPlay'
-import WishList from '../Buttons/WishList'
-import Favorite from '../Buttons/Favorite'
 import { MyContext } from '../../Contexts/GetGameList'
+import './styles.css'
 
 const ControlList = ({ currentPage }) => {
   const useValues = React.useContext(MyContext)
@@ -97,21 +94,14 @@ const ControlList = ({ currentPage }) => {
 
       return (
         <li key={item.id} className="game-item">
-          <img src={item.thumbnail} alt={item.title} className='game-item-img' />
-          <div className="game-item-info">
-            <div className="game-item-section">
-              <span className='game-item-genre'>{item.genre}</span>
-              <div className="game-item-btns">
-                <Favorite id={item.id} title={item.title} />
-                <WishList id={item.id} title={item.title} />
-                <CurrentPlay id={item.id} title={item.title} />
-              </div>
-            </div>
-            <div className="game-item-section">
-              <p className="game-item-title">{item.title}</p>
-              <RatingStars id={item.id} title={item.title} />
-            </div>
+          <img className='game-item-img control ' src={item.thumbnail} alt={item.title} />
+          <div className='div-wrapper'>
+            <p className="game-item-title control">{item.title}</p>
+
+            <p className="game-item-genre control">{item.genre}</p>
+
           </div>
+
         </li>
       )
     })

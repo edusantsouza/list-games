@@ -12,8 +12,7 @@ const ControlLogin = () => {
   const emailRef = useRef()
   const passwordRef = useRef()
   const passwordConfirmRef = useRef()
-  const { signin, signup, createUser, setRefName,
-    setRefEmail, setUserIsLogged } = useContext(AuthContext)
+  const { signin, signup, createUser, setRefName, setRefEmail, setUserIsLogged, setSpinner } = useContext(AuthContext)
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
   const navigate = useNavigate()
@@ -34,7 +33,13 @@ const ControlLogin = () => {
       setError('')
       createUser(nameRef.current.value, emailRef.current.value, listFavorite, listCurrent, listWishlist, rate)
       await signup(emailRef.current.value, passwordRef.current.value)
-      setUserIsLogged(false)
+      await signin(emailRef.current.value, passwordRef.current.value)
+      setUserIsLogged(true)
+      setSpinner(true)
+      setTimeout(() => {
+        navigate('/')
+        setSpinner(false)
+      }, 1000)
       setRefName(nameRef.current.value)
     } catch {
       setError("Falha na criação da conta.")
@@ -50,14 +55,16 @@ const ControlLogin = () => {
       setLoading(true)
       await signin(emailRef.current.value, passwordRef.current.value)
       setUserIsLogged(true)
-      setRefEmail(emailRef.current.value)
-      navigate('/')
+      setSpinner(true)
+      setTimeout(() => {
+        navigate('/')
+        setSpinner(false)
+      }, 1000)
     } catch {
       setError("Falha no login. Verifique seu e-mail ou senha")
     }
     setLoading(false)
   }
-
 
   const handleSwitchScreen = () => {
     emailRef.current.value = ''
@@ -82,7 +89,9 @@ const ControlLogin = () => {
             <div className="form-field-wrapper">
               <div className="form-field">
                 <label htmlFor="email">E-mail</label>
-                <input ref={emailRef} type="email" name='email' placeholder='Digite seu e-mail' required />
+                <input ref={emailRef} onChange={(e) => {
+                  setRefEmail(e.target.value)
+                }} type="email" name='email' placeholder='Digite seu e-mail' required />
               </div>
 
               <div className="form-field">
@@ -124,7 +133,9 @@ const ControlLogin = () => {
 
               <div className="form-field">
                 <label htmlFor="email">E-mail</label>
-                <input ref={emailRef} type="email" name='email' placeholder='Digite seu e-mail' required />
+                <input ref={emailRef} onChange={(e) => {
+                  setRefEmail(e.target.value)
+                }} type="email" name='email' placeholder='Digite seu e-mail' required />
               </div>
 
               <div className="form-field">
