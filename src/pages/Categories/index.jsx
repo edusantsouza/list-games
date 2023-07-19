@@ -3,13 +3,12 @@ import CategoriesContent from '../../Components/CategoriesContent'
 import Sidebar from '../../Components/Sidebar'
 import NavHeader from '../../Components/NavHeader'
 import Spinner from '../../Components/Spinner'
+import PopUpMessage from '../../Components/PopUpMessage'
 import { MyContext } from '../../Contexts/GetGameList'
-import { AuthContext } from '../../Contexts/AuthContext'
 
 
 const Categorie = () => {
   const { finalList } = useContext(MyContext)
-  const { favData, currentUser } = useContext(AuthContext)
 
   return (
 
@@ -20,6 +19,7 @@ const Categorie = () => {
         ? <CategoriesContent />
         : <Spinner />
       }
+      {<PopUpMessage />}
     </>
   )
 }

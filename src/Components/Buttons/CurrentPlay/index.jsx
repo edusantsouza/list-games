@@ -5,9 +5,11 @@ import { useNavigate } from 'react-router-dom';
 import { doc, updateDoc, arrayUnion, arrayRemove } from "firebase/firestore";
 import { db } from '../../../firebase'
 import 'firebase/firestore';
+import { MyContext } from '../../../Contexts/GetGameList';
 
 const CurrentPlay = ({ title, id, publisher, short_description, thumbnail, genre, platform, game_url }) => {
-  const { userData, favData, currentUser, ids, setIds } = useContext(AuthContext)
+  const { userData, favData, currentUser, ids, setIds, } = useContext(AuthContext)
+  const { setMessage, setIsActive } = useContext(MyContext)
   const [active, setActive] = useState(false)
   const navigate = useNavigate()
 
@@ -60,11 +62,15 @@ const CurrentPlay = ({ title, id, publisher, short_description, thumbnail, genre
         addItem(id)
         addElement()
         setActive(true)
+        setIsActive(true)
+        setMessage(`"${title}" foi adicionado a sua biblioteca.`)
         return
       } else if (favData.listCurrent.some((item) => item.id === id)) {
         removeItem(id)
         removeElement()
         setActive(false)
+        setIsActive(true)
+        setMessage(`"${title}" foi removido da sua biblioteca.`)
         return
       }
     }

@@ -21,7 +21,10 @@ const GetGameList = (props) => {
   const [isFav, setIsFav] = useState(1)
   const [storageIds, setStorageIds] = useState(null)
   const [value, setValue] = useState(0)
-  const { currentUser, ids } = useContext(AuthContext)
+  const [isActive, setIsActive] = useState(false)
+  const [isModal, setIsModal] = useState(0)
+  const [message, setMessage] = useState(null)
+
 
 
   const options = {
@@ -85,6 +88,12 @@ const GetGameList = (props) => {
   }
 
   const onValues = {
+    message,
+    setMessage,
+    isActive,
+    setIsActive,
+    setIsModal,
+    isModal,
     value,
     setValue,
     statusCodeValidation,

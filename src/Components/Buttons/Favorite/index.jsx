@@ -1,5 +1,6 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { AuthContext } from '../../../Contexts/AuthContext';
+import { MyContext } from '../../../Contexts/GetGameList';
 import './styles.css'
 import { useNavigate } from 'react-router-dom';
 import { doc, updateDoc, arrayUnion, arrayRemove, getDoc } from "firebase/firestore";
@@ -7,7 +8,8 @@ import { db } from '../../../firebase'
 import 'firebase/firestore';
 
 const FavoriteButton = ({ title, id, publisher, short_description, thumbnail, genre, platform, game_url }) => {
-  const { userData, favData, setFavData, currentUser, ids, setIds } = useContext(AuthContext)
+  const { userData, favData, currentUser, ids, setIds } = useContext(AuthContext)
+  const { setMessage, setIsActive } = useContext(MyContext)
   const [active, setActive] = useState(false)
   const navigate = useNavigate()
 
@@ -63,11 +65,15 @@ const FavoriteButton = ({ title, id, publisher, short_description, thumbnail, ge
         addItem(id)
         addElement()
         setActive(true)
+        setIsActive(true)
+        setMessage(`"${title}" foi adicionado aos seus favoritos.`)
         return
       } else if (favData.listFavorite.some((item) => item.id === id)) {
         removeItem(id)
         removeElement()
         setActive(false)
+        setIsActive(true)
+        setMessage(`"${title}" foi removido dos seus favoritos.`)
         return
       }
     }
