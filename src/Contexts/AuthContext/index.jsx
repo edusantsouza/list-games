@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { myAuth, db } from '../../firebase'
+import app, { myAuth, db } from '../../firebase'
 import { addDoc, collection, getDocs, onSnapshot, doc, getDoc } from 'firebase/firestore'
 import firebase from 'firebase/compat/app'
 import 'firebase/auth';
@@ -20,23 +20,7 @@ export const AuthProvider = ({ children }) => {
   const [favData, setFavData] = useState(null)
   const [ids, setIds] = useState([])
   const userCollectionRef = collection(db, 'userStorage')
-
-  useEffect(() => {
-    if (currentUser) {
-      const getSnapshot = async () => {
-        const local = JSON.parse(localStorage.getItem('user'))
-        const docRef = doc(db, "userStorage", local.id);
-        const docSnap = await getDoc(docRef);
-
-        if (docSnap.exists()) {
-          setFavData(docSnap.data());
-        }
-      }
-
-      getSnapshot()
-    }
-
-  }, [ids])
+  const [data, setData] = useState([])
 
 
 
@@ -72,11 +56,63 @@ export const AuthProvider = ({ children }) => {
       setUserData(JSON.parse(localStorage.getItem('user')))
     })
 
-    firebase.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL);
+    // const getSnapshot = async () => {
 
+    //   const local = JSON.parse(localStorage.getItem('user'))
+    //   const docRef = doc(db, "userStorage", local.id);
+    //   const docSnap = await getDoc(docRef);
+    //   if (docSnap.exists()) {
+    //     setFavData(docSnap.data());
+    //   }
+    // }
+
+
+    // getSnapshot()
+
+
+    firebase.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL);
     return unsubscribe
   }, [])
 
+  // const local = JSON.parse(localStorage.getItem('user'))
+  // useEffect(() => {
+
+  //   const docRef = doc(db, "userStorage", local.id);
+
+  //   // Adicione o listener para o documento específico
+  //   const unsubscribe = docRef.onSnapshot((snapshot) => {
+  //     // O snapshot contém os dados atualizados do documento
+  //     if (snapshot.exists) {
+  //       setData(snapshot.data());
+  //     } else {
+  //       // O documento não existe
+  //       setData('sem doc');
+  //     }
+  //   });
+
+  //   // O retorno da função remove o listener quando o componente é desmontado
+  //   return () => {
+  //     unsubscribe();
+  //   };
+  // }, []);
+
+
+
+  useEffect(() => {
+    const getSnapshot = async () => {
+      const local = JSON.parse(localStorage.getItem('user'))
+      if (local) {
+        const docRef = doc(db, "userStorage", local.id);
+        const docSnap = await getDoc(docRef);
+        if (docSnap.exists()) {
+          setFavData(docSnap.data())
+        }
+      }
+
+    }
+
+    getSnapshot()
+  }, [ids])
   const value = {
     ids,
     setIds,

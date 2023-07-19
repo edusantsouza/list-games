@@ -54,6 +54,7 @@ const CurrentPlay = ({ title, id, publisher, short_description, thumbnail, genre
   };
 
   const handleTogglePlaying = () => {
+
     if (userData && currentUser) {
       if (!favData.listCurrent.some((item) => item.id === id)) {
         addItem(id)

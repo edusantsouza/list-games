@@ -1,4 +1,5 @@
-import React, { createContext, useState, useEffect } from 'react'
+import React, { createContext, useState, useEffect, useMemo, useContext } from 'react'
+import { AuthContext } from '../AuthContext'
 
 export const MyContext = createContext()
 
@@ -20,7 +21,7 @@ const GetGameList = (props) => {
   const [isFav, setIsFav] = useState(1)
   const [storageIds, setStorageIds] = useState(null)
   const [value, setValue] = useState(0)
-  const [finalList, setFinalList] = useState(null)
+  const { currentUser, ids } = useContext(AuthContext)
 
 
   const options = {
@@ -68,23 +69,20 @@ const GetGameList = (props) => {
 
   useEffect(() => {
     fetchWithTimeout('https://games-test-api-81e9fb0d564a.herokuapp.com/api/data', options)
+
   }, [])
 
 
-  const statusCodeList = [500, 502, 503, 504, 507, 508, 509]
+  const finalList = list && list.map((item) => {
+    const { title, id, publisher, short_description, thumbnail, genre, platform, game_url } = item;
+    return { title, id, publisher, short_description, thumbnail, genre, platform, game_url };
+  });
+
+
   const statusCodeValidation = (code) => {
+    const statusCodeList = [500, 502, 503, 504, 507, 508, 509]
     return statusCodeList.some(item => item === code)
   }
-
-  useEffect(() => {
-    const staticList = list && list.map((item) => {
-      const { title, id, publisher, short_description, thumbnail, genre, platform, game_url } = item;
-      return { title, id, publisher, short_description, thumbnail, genre, platform, game_url };
-    });
-    setFinalList(staticList)
-  })
-
-
 
   const onValues = {
     value,

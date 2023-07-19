@@ -7,7 +7,7 @@ import RatingStars from '../Buttons/RatingStars'
 import { AuthContext } from '../../Contexts/AuthContext';
 import './styles.css'
 
-const CategoriesContent = ({ user }) => {
+const CategoriesContent = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [showFilter, setShowFilter] = useState(false)
   const { finalList, search, setSearch, categorie, setCategorie } = useContext(MyContext)

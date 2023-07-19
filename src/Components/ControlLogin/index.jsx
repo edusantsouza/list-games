@@ -60,7 +60,8 @@ const ControlLogin = () => {
       setTimeout(() => {
         navigate('/')
         setSpinner(false)
-      }, 1000)
+        window.location.reload()
+      }, 2000)
     } catch {
       setError("Falha no login. Verifique seu e-mail ou senha")
     }

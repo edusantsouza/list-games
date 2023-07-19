@@ -13,10 +13,8 @@ const FavoriteButton = ({ title, id, publisher, short_description, thumbnail, ge
 
 
   useEffect(() => {
-    if (currentUser) {
-      if (favData.listFavorite) {
-        setActive(favData.listFavorite.some((item) => item.id === id))
-      }
+    if (currentUser && favData) {
+      setActive(favData.listFavorite.some((item) => item.id === id))
     }
   })
 
@@ -29,6 +27,7 @@ const FavoriteButton = ({ title, id, publisher, short_description, thumbnail, ge
       await updateDoc(docRef, {
         listFavorite: arrayUnion({ title, id, publisher, short_description, thumbnail, genre, platform, game_url })
       });
+
     } catch (error) {
       console.error(error)
     }
@@ -56,14 +55,16 @@ const FavoriteButton = ({ title, id, publisher, short_description, thumbnail, ge
     setIds(updatedItems);
   };
 
+
+
   const handleToggleFavorite = () => {
     if (userData && currentUser) {
-      if (favData.listFavorite && !favData.listFavorite.some((item) => item.id === id)) {
+      if (!favData.listFavorite.some((item) => item.id === id)) {
         addItem(id)
         addElement()
         setActive(true)
         return
-      } else if (favData.listFavorite && favData.listFavorite.some((item) => item.id === id)) {
+      } else if (favData.listFavorite.some((item) => item.id === id)) {
         removeItem(id)
         removeElement()
         setActive(false)

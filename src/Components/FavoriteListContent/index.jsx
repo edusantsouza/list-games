@@ -61,7 +61,7 @@ const FavoritesListContent = () => {
 
       </div>
       <ul className="show-games__list">
-        {finalList ? showContent() : <p className="empty-msg">Você ainda não adicionou nada aos seus favoritos.</p>}
+        {favData.listFavorite.length > 0 ? showContent() : <p className="empty-msg">Você ainda não adicionou nada aos seus favoritos.</p>}
       </ul>
     </section>
   )
