@@ -1,4 +1,4 @@
-# Projeto de Estágio Frontend React - App Masters
+# Projeto de Estágio Frontend React App Masters - Segunda etapa
 
 Este projeto foi realizado com base no processo seletivo de estágio para a [App Masters](https://www.appmasters.io/).
 
@@ -7,66 +7,82 @@ O objetivo do projeto é implementar o frontend de uma lista de jogos fornecido 
 
 ## Requisitos
 
-- O projeto deve ser feito usando React ou Next.JS [x]
-  * A implementação do projeto foi feita com React, em JS puro.
+- Utilizar Firebase para realizar autenticação usando email/senha. [x]
+ * Autenticação de usuário feita com email/senha, registrando o usuário no banco de dados com Firestore.
 
-- Obter a lista de jogos em `/data` [x]
-  * Através da URL base da API, acessamos o `/data` e, no segundo argumento do fetch, fornecemos no header um e-mail válido como value da key `dev-email-address`.
+- Ter um ❤️ para o usuário favoritar o jogo diretamente na lista, ficando vermelho quando marcado. [x]
+  * Todos os jogos apresentados são possuem um ícone de coração para adicioná-lo a lista de favoritos.
 
-- Apresentar um loader enquanto os dados são obtidos [x]
-  * Uma mensagem indicando que a aplicação está carregando é apresentada até que a busca na API retorne uma resposta.
+- Salvar no firebase os jogos favoritos do usuário, no realtime ou firestore. [x]
+  * Ao favoritar o jogo ele será registrado no banco de dados do firestore no id do usuário. 
 
-- Apresentar os jogos em três colunas (no computador) [x]
-  * Foi utilizado o display grid para distribuir os cards em três colunas de tamanhos iguais.
+- Ter um botão “Favoritos” que apresenta apenas jogos favoritados, permitindo ainda buscar e filtrar estes jogos. Pode ser na própria lista já apresentada ou em uma separada se preferir. [x]
+  * A aplicação conta com um seção de favoritos, além de uma lista de desejos e biblioteca que, assim como o botão de favoritar, estão presentes nos cards de cada jogo.
 
-- Em cada card apresentar o título e imagem pelo menos [x]
-  * Cada card possui a imagem, título, publisher, gênero, descrição e acesso ao site principal que agrega informações sobre o jogo. 
+- Ao lado do coração, ter ★★★★ para o usuário avaliar o jogo, podendo marcar de uma em uma. Ou seja, ele pode escolher 1, 2, 3 ou as 4. [-]
+ * Parcialmente implementado. Ainda não é possível registrar no banco de dados o valor atribuido a cada jogo pelo usuário logado.
+ 
+- Ter uma forma de ordenar por avaliação, vendo os melhores (ou piores) primeiro, clicando novamente para inverter a ordem. []
+  * Não implementado.
 
-- Lidar com a responsividade, para que fique bem apresentado no computador, tablets ou celular [x]
-  * Também através do display grid foram implentados breakpoints para adaptar o conteúdo a diferentes tamanhos de tela.
+- Ao carregar a interface, deixar o ❤️ vermelho para os itens favoritos e as ⭐️ amarelas nos itens avaliados [x]
+  * Parcialmente implementado. Apenas os favoritos são registrados, por enquanto.
 
-- Quando a API retornar o `status code` 500, 502, 503, 504, 507, 508 ou 509 apresentar ao usuário `O servidor falhou em responder, tente recarregar a página` [x]
-  * Foram implementadas mensagens de erro aos status code citados no requisito, retornando ao usuário o texto:
-   `O servidor falhou em responder, tente recarregar a página`
+- Ao acessar sem estar autenticado, os ícones 🩶 e ★ deverão estar visíveis, mas ao clicar irá solicitar a autenticação [x]
+  * Os itens de seleção nos cards são visíveis mas não são clicáveis. Ao selecioná-lo o usuário é redirecionado para a tela de login ou signup.
 
-- Caso a API retorne outros erros, apresentar `O servidor não conseguirá responder por agora, tente voltar novamente mais tarde` [x]
-  * Foram implementadas mensagens de erros a qualquer outro retorno da API que tenho o `status.ok` como false, retornando ao usuário o texto:
-   `O servidor falhou em responder, tente recarregar a página`
+- Ao obter os jogos da API e os dados do firebase, apresentar. Manter o loading para os jogos. Não precisa de loading enquanto espera o firebase, até porque o firebase devolverá os dados mais rapidamente e pode ser complicado “esperar o firebase” se estiver “escutando o firebase”. [x]
+  * Telas de loading implementadas em alguns momentos da aplicação.
 
-- Ao realizar uma chamada, não esperar mais que 5 segundos pelo retorno. Se os dados demorarem mais de 5 segundos para retornar apresentar `O servidor demorou para responder, tente mais tarde` [x]
-  * Um controller foi adicionado durante o fetch dos dados para controlar o tempo entre o pedido e a resposta (seja ela qual for). Ao exceder o tempo determinado de 5 segundos a seguinte mensagem é apresentada na tela:
-  `O servidor demorou para responder, tente mais tarde`
+- A autenticação deve acontecer na rota `/auth/` do frontend, usando o provedor “E-mail/senha” do firebase, onde o usuário poderá criar uma conta ou acessar a conta já existente (se mantendo apenas nesta rota) [x]
+  * O usuário pode se cadastrar ou fazer login se já tiver conta existente.
 
-- Sempre que apresentar uma mensagem para o usuário, ou tiver os dados em mãos para apresentar, ocultar o loader [x]
-  * Quando a aplicação possui uma resposta a respeito do fetch na API, ela oculta o loader para fornecer a informação em tela.
+- Escolher um item para aplicar uma animação com CSS, pode ser ao favoritar, ou avaliar, ou quando os itens surgirem. [x]
+  * A home do projeto possui um carrossel de imagens dos jogos da API.
 
-- Incluir um campo de busca, que permite localizar jogos pelo título, com busca case insensitive [x]
-  * No header da aplicação está um campo de busca que procura pelo nome do jogo e retorna o resultado, seja ele positivo (que o jogo foi encontrado) ou não.
-
-- Uma vez que tenha os dados em mãos, veja quais `genre` foram retornados e permita ao usuário selecionar um deles, e então filtre para exibir apenas jogos do gênero selecionado [x]
-  * Um filtro foi adicionado na home para selecionar jogos conforme o gênero que preferir através de uma droplist que contém todos os gêneros disponíveis.
-
+- Publicar seu projeto online para testarmos (na mesma url de antes). [x]
+  * Devidamente publicado.
 
 
 ### Screenshots
 
 A página inicial da aplicação.
 
-![Página inicial da aplicação.](/screenshots/screenshot-one.JPG)
+![Página inicial da aplicação.](/screenshots/home-screen.png)
+
+Página com todos os jogos.
+
+![Categorias - Todos os jogos](/screenshots/categories-screen.png)
 
 
+Página com todos os jogos para usuário logado.
 
-Filtrando os jogos por categoria.
+![Categorias - Todos os jogos para usuário logado.](/screenshots/categories-logado.png)
 
-![Filtrando os jogos por categoria.](/screenshots/screenshot-two.JPG)
+Página de favoritos.
+
+![Página de favoritos](/screenshots/favorites-screen.png)
+
+Página de login.
+
+![Página de Login](/screenshots/login-screen.png)
+
+Menu no mobile para usuário não logado. 
+
+![Menu mobile.](/screenshots/menu-mobile.png)
 
 
+Menu no mobile para usuário não logado. 
 
-Pesquisando jogos com uma parte do nome na barra de pesquisa. 
+![Menu mobile.](/screenshots/menu-mobile.png)
 
-![Pesquisando jogos com uma parte do nome na barra de pesquisa.](/screenshots/screenshot-three.JPG)
+Menu no mobile para usuário logado. 
 
+![Menu mobile para usuário logado.](/screenshots/menu-mobile-on.png)
 
+Categorias para usuário logado no mobile. 
+
+![Categorias para usuário logado no mobile.](/screenshots/categories-mobile.png)
 
 Visite a página da aplicação [clicando aqui.](https://list-games.vercel.app/)
 
