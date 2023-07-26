@@ -1,20 +1,32 @@
-import React, { useEffect, useContext } from 'react'
+import React, { useEffect, useContext, useState } from 'react'
 import './styles.css'
 import { MyContext } from '../../Contexts/GetGameList'
 
 const PopUpMessage = ({ }) => {
-  const { message, isModal, isActive, setIsActive } = useContext(MyContext)
+  const { message, isActive, setIsActive, ids } = useContext(MyContext)
+  const [timeoutId, setTimeoutId] = useState(null);
 
   useEffect(() => {
-    if (isActive) {
-      setTimeout(() => {
+    const handleTimeout = () => {
+      if (isActive) {
         setIsActive(false)
-      }, 4990)
+      }
+    };
+
+    const timeoutDuration = 3900; // 2 segundos
+
+    if (timeoutId) {
+      clearTimeout(timeoutId);
     }
-  })
 
+    const newTimeoutId = setTimeout(handleTimeout, timeoutDuration);
 
+    setTimeoutId(newTimeoutId);
 
+    return () => {
+      clearTimeout(newTimeoutId);
+    };
+  }, [isActive])
 
   return (
     <div style={isActive ? { display: 'flex' } : { display: 'none' }} className="popup__container">

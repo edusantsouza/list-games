@@ -57,6 +57,7 @@ const ControlLogin = () => {
       await signin(emailRef.current.value, passwordRef.current.value)
       setUserIsLogged(true)
       setSpinner(true)
+
       setTimeout(() => {
         navigate('/')
         setSpinner(false)

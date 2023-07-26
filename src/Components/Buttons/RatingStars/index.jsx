@@ -1,28 +1,30 @@
 import React, { useState, useContext, useEffect } from 'react';
 import './styles.css'
+import { db } from '../../../firebase';
+import { doc, updateDoc, arrayUnion } from "firebase/firestore";
 import { AuthContext } from '../../../Contexts/AuthContext';
-import { Rating } from '@mui/material';
-import { doc, updateDoc, arrayUnion, arrayRemove } from "firebase/firestore";
-import { db } from '../../../firebase'
-import 'firebase/firestore';
+import 'firebase/database';
 import { useNavigate } from 'react-router-dom';
 
 
 const RatingStars = ({ title, id }) => {
   const { userData, favData, currentUser, ids } = useContext(AuthContext)
-  const [value, setValue] = useState(0)
+  const [value, setValue] = useState('')
+  const [count, setCount] = useState(0)
   const navigate = useNavigate()
 
 
 
-  useEffect(() => {
-    if (currentUser && favData && favData.rate.length > 0 && favData.rate.some((item) => item.id === id)) {
-      const item = favData.rate.filter(item => item.id === id)
-      const getStar = item[item.length - 1]
-      setValue(getStar.element)
-    }
+  // useEffect(() => {
+  //   if (favData) {
+  //     const item = favData.rate.filter(item => item.id === id)
+  //     const getStar = item[item.length - 1]
+  //     console.log(item)
+  //     setValue(item[item.length - 1])
+  //   }
 
-  })
+
+  // }, [count])
 
   const userId = currentUser && userData.id
 
@@ -41,24 +43,25 @@ const RatingStars = ({ title, id }) => {
 
 
   return (
-    <div className='icon-wrapper'>
-      <Rating
-        style={{ cursor: `${currentUser ? 'pointer' : 'initial'}` }}
-        name="rate"
-        size="large"
-        value={value}
-        max={4}
-        onChange={(event) => {
-          if (currentUser) {
-            addElement(event.target.value)
-            setValue(Number(event.target.value));
-          } else {
-            navigate("/auth")
-          }
-        }}
-      />
+    <div className="star-component">
+      {[1, 2, 3, 4].map((item) => {
+        return (
+          <i key={item}
+            style={value >= item ? { color: 'gold' } : { color: 'grey' }}
+            id={item}
+            className={`star bx bxs-star ${currentUser ? 'pointer' : 'default'} `}
+            onClick={(event) => {
+              if (currentUser) {
+                setValue(event.currentTarget.id)
+              } else {
+                navigate("/auth")
+              }
+            }}
+          ></i>)
+      })}
     </div>
   );
 };
+
 
 export default RatingStars;
