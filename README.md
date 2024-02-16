@@ -19,8 +19,8 @@ O objetivo do projeto é implementar o frontend de uma lista de jogos fornecido 
 - Ter um botão “Favoritos” que apresenta apenas jogos favoritados, permitindo ainda buscar e filtrar estes jogos. Pode ser na própria lista já apresentada ou em uma separada se preferir. [x]
   * A aplicação conta com um seção de favoritos, além de uma lista de desejos e biblioteca que, assim como o botão de favoritar, estão presentes nos cards de cada jogo.
 
-- Ao lado do coração, ter ★★★★ para o usuário avaliar o jogo, podendo marcar de uma em uma. Ou seja, ele pode escolher 1, 2, 3 ou as 4. [-]
- * Parcialmente implementado. Ainda não é possível registrar no banco de dados o valor atribuido a cada jogo pelo usuário logado.
+- Ao lado do coração, ter ★★★★ para o usuário avaliar o jogo, podendo marcar de uma em uma. Ou seja, ele pode escolher 1, 2, 3 ou as 4. [x]
+  * Parcialmente implementado. Ainda não é possível registrar no banco de dados o valor atribuido a cada jogo pelo usuário logado.
  
 - Ter uma forma de ordenar por avaliação, vendo os melhores (ou piores) primeiro, clicando novamente para inverter a ordem. []
   * Não implementado.
