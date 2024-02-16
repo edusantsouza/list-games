@@ -71,11 +71,6 @@ Menu no mobile para usuário não logado.
 
 ![Menu mobile.](/screenshots/menu-mobile.png)
 
-
-Menu no mobile para usuário não logado. 
-
-![Menu mobile.](/screenshots/menu-mobile.png)
-
 Menu no mobile para usuário logado. 
 
 ![Menu mobile para usuário logado.](/screenshots/menu-mobile-on.png)
